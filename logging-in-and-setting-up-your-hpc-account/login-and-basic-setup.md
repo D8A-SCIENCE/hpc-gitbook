@@ -12,7 +12,7 @@ For this example, we'll be logging into the Vortex sub-cluster, so type 'vortex'
 
 Your terminal should now look similar to this:
 
-![](../.gitbook/assets/login.png)
+![](/hpc-gitbook/.gitbook/assets/login.png)
 
 ### Home Directory
 
