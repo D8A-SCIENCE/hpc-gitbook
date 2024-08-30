@@ -1,73 +1,73 @@
 - title: Distributed ML @ W&M
-  url: /README.html
+  url: /hpc-gitbook/README.html
 
 - title: Logging in and Setting up your HPC Account
   children:
     - title: 🎉 Requesting an Account
-      url: /logging-in-and-setting-up-your-hpc-account/create.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/create.html
     - title: 👋 Login & Basic Setup
-      url: /logging-in-and-setting-up-your-hpc-account/login-and-basic-setup.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/login-and-basic-setup.html
     - title: 🗺 PBSTOP - Your Cluster Roadmap
-      url: /logging-in-and-setting-up-your-hpc-account/pbstop-your-cluster-roadmap.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/pbstop-your-cluster-roadmap.html
     - title: 🐍 Uploading Files
-      url: /logging-in-and-setting-up-your-hpc-account/filezilla.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
 
 - title: The Batch System
   children:
     - title: 👩🌾 What is a batch system?
-      url: /the-batch-system/what-is-the-batch-system.html
+      url: /hpc-gitbook/the-batch-system/what-is-the-batch-system.html
     - title: 👷 Jobs
-      url: /the-batch-system/jobs.html
+      url: /hpc-gitbook/the-batch-system/jobs.html
     - title: Interactive Jobs
-      url: /the-batch-system/interactive-jobs.html
+      url: /hpc-gitbook/the-batch-system/interactive-jobs.html
     - title: Non-Interactive Jobs
-      url: /the-batch-system/non-interactive-jobs.html
+      url: /hpc-gitbook/the-batch-system/non-interactive-jobs.html
     - title: Checking the status of your jobs
-      url: /the-batch-system/checking-the-status-of-your-jobs.html
+      url: /hpc-gitbook/the-batch-system/checking-the-status-of-your-jobs.html
     - title: Deleting Jobs
-      url: /the-batch-system/deleting-jobs.html
+      url: /hpc-gitbook/the-batch-system/deleting-jobs.html
 
 - title: Using Python & Batch
   children:
     - title: 🐍 Conda Environments
-      url: /logging-in-and-setting-up-your-hpc-account/conda-environments.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/conda-environments.html
     - title: Python + Conda in a Job
-      url: /the-batch-system/running-python-within-a-job.html
+      url: /hpc-gitbook/the-batch-system/running-python-within-a-job.html
     - title: Python & MPI
-      url: /parallel-computing/launching-parallel-programs-on-the-hpc-using-mpi.html
+      url: /hpc-gitbook/parallel-computing/launching-parallel-programs-on-the-hpc-using-mpi.html
     - title: Python & Dask
-      url: /parallel-computing/dask_intro.html
+      url: /hpc-gitbook/parallel-computing/dask_intro.html
 
 - title: Distributed sklearn
   children:
     - title: Example Dataset
-      url: /distributed-scikit/data.html
+      url: /hpc-gitbook/distributed-scikit/data.html
     - title: Random Search - Simple
-      url: /distributed-scikit/randomSearch.html
+      url: /hpc-gitbook/distributed-scikit/randomSearch.html
     - title: Random Search - MPI
-      url: /distributed-scikit/mpi.html
+      url: /hpc-gitbook/distributed-scikit/mpi.html
     - title: Random Forest
-      url: /distributed-scikit/rf.html
+      url: /hpc-gitbook/distributed-scikit/rf.html
     - title: Dask & sklearn
-      url: /distributed-scikit/dask.html
+      url: /hpc-gitbook/distributed-scikit/dask.html
 
 - title: Distributed PyTorch - Dask
   children:
     - title: Basics of Torch
-      url: /distributed-pytorch-dask/torchbasics.html
+      url: /hpc-gitbook/distributed-pytorch-dask/torchbasics.html
     - title: PyTorch + DASK
-      url: /distributed-pytorch-dask/torchdist.html
+      url: /hpc-gitbook/distributed-pytorch-dask/torchdist.html
 
 - title: Kubernetes
   children:
     - title: Basics of Kubernetes
-      url: /k8s/intro.html
+      url: /hpc-gitbook/k8s/intro.html
     - title: Your First K8S Deployment
-      url: /k8s/yourFirstDeployment.html
+      url: /hpc-gitbook/k8s/yourFirstDeployment.html
     - title: Persistence & Python
-      url: /k8s/python_conda.html
+      url: /hpc-gitbook/k8s/python_conda.html
     - title: Setting up Torch
-      url: /k8s/envWithPod.html
+      url: /hpc-gitbook/k8s/envWithPod.html
     - title: One Pod Torch with Data
-      url: /k8s/singlePodTorch.html
+      url: /hpc-gitbook/k8s/singlePodTorch.html
 
