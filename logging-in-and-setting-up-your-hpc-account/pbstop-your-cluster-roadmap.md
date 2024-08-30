@@ -2,11 +2,11 @@
 
 Type `pbstop` into your terminal. You should see a screen that looks like this:
 
-![](../.gitbook/assets/pbstop.png)
+![](/hpc-gitbook/assets/images/pbstop.png)
 
 This is your 'birdseye view' of the cluster.
 
-![](../.gitbook/assets/pbstop\_ex.png)
+![](/hpc-gitbook/assets/images/pbstop\_ex.png)
 
 Some helpful terminology:
 

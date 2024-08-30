@@ -59,12 +59,12 @@ Now, type `qsub job` into your terminal. This will submit the job to the job que
 
 After a couple seconds, type `ls` into your terminal. If you only see your job script, wait a few seconds longer and check again until you see two files that look similar to:
 
-![](<../.gitbook/assets/lsdemo (1).png>)
+![](</hpc-gitbook/assets/images/lsdemo (1).png>)
 
 The two new files are your job output files. They will have the naming convention `[JOBFILENAME].e[JOBID]` and `[JOBFILENAME].o[JOBID]`. The file with a .e contains a printout of any errors that caused your job to fail. In this case, the file should be empty. Check that it is by running `more job.e9777417.`If nothing prints out, then your job ran successfully!
 
 Next, check the job output file by running `more job.o9777417`
 
-![](../.gitbook/assets/morejo.png)
+![](/hpc-gitbook/assets/images/morejo.png)
 
 Ignore the Warning line and the line that starts with 'Thus'. The bottom line should say "Hello World!" thanks to our echo statement in the job script we submitted!
