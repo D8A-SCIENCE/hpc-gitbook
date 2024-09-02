@@ -20,7 +20,11 @@
         <ul>
           {% for item in site.data.navigation %}
             <li>
-              <a href="{{ item.url }}">{{ item.title }}</a>
+              {% if item.url %}
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              {% else %}
+                {{ item.title }}
+              {% endif %}
               {% if item.children %}
                 <ul>
                   {% for child in item.children %}
