@@ -32,11 +32,13 @@ body {
 
 .sidebar nav ul li {
   margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .sidebar nav ul li a {
   text-decoration: none;
-  color: #ffffff;
+  /* color: #ffffff; */
   display: block;
   padding: 10px;
   border-radius: 4px;
@@ -53,6 +55,7 @@ body {
 
 .sidebar nav ul li ul li a {
   font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .content {
