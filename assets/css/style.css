@@ -27,6 +27,7 @@ body {
 
 .sidebar nav ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 /* applies to parent items only */
@@ -43,7 +44,7 @@ body {
   text-transform: none;
   font-weight: normal;
   font-size: 1.1em;
-  padding-left: 10px;
+  padding-left: 20px;
   margin-bottom: 0px;
 }
 
