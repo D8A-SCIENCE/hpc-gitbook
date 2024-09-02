@@ -11,6 +11,8 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/pbstop-your-cluster-roadmap.html
     - title: 🐍 Uploading Files
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
+    - title: Using the Jump Server and Configuring SSH
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
 
 - title: The Batch System
   children:
