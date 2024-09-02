@@ -30,12 +30,16 @@ body {
   padding: 0;
 }
 
-.sidebar nav ul li {
+/* applies to parent items only */
+.sidebar nav ul > li {
   margin-bottom: 8px;
   color: #ffffff;
   font-weight: bold;
+  font-size: 0.9em;
+  text-transform: uppercase;
 }
 
+/* applies to all `li a` children */
 .sidebar nav ul li a {
   text-decoration: none;
   color: #ffffff;
@@ -43,20 +47,22 @@ body {
   padding: 10px;
   border-radius: 4px;
 }
-
 .sidebar nav ul li a:hover {
   background-color: #4CAF50;
   color: white;
 }
 
-.sidebar nav ul li ul {
+/* applies to children items only */
+.sidebar nav ul ul > li {
+  font-size: 1em;
   padding-left: 20px;
-}
-
-.sidebar nav ul li ul li a {
-  font-size: 14px;
   margin-bottom: 8px;
 }
+
+/* .sidebar nav ul li ul li a {
+  font-size: 14px;
+  margin-bottom: 8px;
+} */
 
 .content {
   margin-left: 270px;
