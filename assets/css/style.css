@@ -43,8 +43,8 @@ body {
   text-transform: none;
   font-weight: normal;
   font-size: 1.1em;
-  padding-left: 20px;
-  /* margin-bottom: 8px; */
+  padding-left: 10px;
+  margin-bottom: 0px;
 }
 
 /* applies to all `li a` children */
