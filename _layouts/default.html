@@ -12,26 +12,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="sidebar">
-    <nav>
-      <ul>
-        {% for item in site.data.navigation %}
-          <li>
-            <a href="{{ item.url }}">{{ item.title }}</a>
-            {% if item.children %}
-              <ul>
-                {% for child in item.children %}
-                  <li><a href="{{ child.url }}">{{ child.title }}</a></li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </div>
-  <div class="content">
-    {{ content }}
+  <div class="container">
+    <div class="sidebar">
+      <nav>
+        <ul>
+          {% for item in site.data.navigation %}
+            <li>
+              <a href="{{ item.url }}">{{ item.title }}</a>
+              {% if item.children %}
+                <ul>
+                  {% for child in item.children %}
+                    <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="content">
+      {{ content }}
+    </div>
   </div>
 </body>
 </html>

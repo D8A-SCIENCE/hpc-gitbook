@@ -7,6 +7,15 @@ body {
   height: 100vh;
 }
 
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
 .sidebar {
   width: 250px;
   background-color: #2d2d2d;
@@ -85,3 +94,27 @@ header h1 {
   font-size: 24px;
 }
 
+/* Code sections.  Interacts with Rouge (Ruby) compiler */
+
+pre,
+code {
+    font-size: 0.8rem;
+    border-radius: 3px;
+    background-color: #f5f5f5;
+    font-family: "Roboto Mono";
+}
+
+code {
+    padding: 1px 5px;
+}
+
+pre {
+    padding: 8px 12px;
+    overflow-x: auto;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

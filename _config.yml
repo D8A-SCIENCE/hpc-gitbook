@@ -1,4 +1,5 @@
-title: Distributed ML at WM
-description: A simple Jekyll theme for my GitHub Pages site
-theme: jekyll-theme-cayman  # Replace this with your chosen theme
+title:          Distributed ML at WM
+description:    Manual for using the WM HPC for Data Science
+theme:          jekyll-theme-cayman 
 
+highlighter:    rouge
