@@ -2,11 +2,13 @@
 
 Type `pbstop` into your terminal. You should see a screen that looks like this:
 
-![](/hpc-gitbook/assets/images/pbstop.png)
+<!-- ![](/hpc-gitbook/assets/images/pbstop.png) -->
+
+<img src="/hpc-gitbook/assets/images/pbstop.png" alt="PBSTOP" width="90%">
 
 This is your 'birdseye view' of the cluster.
 
-![](/hpc-gitbook/assets/images/pbstop\_ex.png)
+<!-- ![](/hpc-gitbook/assets/images/pbstop\_ex.png) -->
 
 Some helpful terminology:
 
@@ -14,7 +16,7 @@ Some helpful terminology:
 
 > **Subcluster:** a set of computers with similar computing characteristics.
 
-W\&M's HPC has multiple sub-clusters including Vortex, Bora, Hima, Meltemi, etc... You can read about each of them here: [https://www.wm.edu/offices/it/services/researchcomputing/hw/nodes/index.php](https://www.wm.edu/offices/it/services/researchcomputing/hw/nodes/index.php)
+W&M's HPC has multiple sub-clusters including Vortex, Bora, Hima, Meltemi, etc... You can read about each of them [here](https://www.wm.edu/offices/it/services/researchcomputing/hw/nodes/index.php)
 
 > **Node:** A node is an individual computer within a sub-cluster.
 
