@@ -40,6 +40,34 @@
     <div class="content">
       {{ content }}
     </div>
+
+    <!-- adding previous/next links -->
+    {% assign prev_page = null %}
+    {% assign next_page = null %}
+    {% assign found = false %}
+
+    {% for item in site.data.navigation %}
+      {% if found == true %}
+        {% assign next_page = item %}
+        {% break %}
+      {% endif %}
+
+      {% if item.url == page.url %}
+        {% assign found = true %}
+      {% else %}
+        {% assign prev_page = item %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="page-navigation">
+      {% if prev_page %}
+        <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
+      {% endif %}
+    
+      {% if next_page %}
+        <a href="{{ next_page.url }}" class="next-button">Next: {{ next_page.title }}</a>
+      {% endif %}
+    </div>
   </div>
 </body>
 </html>

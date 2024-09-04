@@ -106,6 +106,27 @@ header h1 {
   font-size: 24px;
 }
 
+/* previous/next post buttons */
+
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.prev-button, .next-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color: #0056b3;
+}
+
+
 /* Code sections.  Interacts with Rouge (Ruby) compiler */
 
 pre,
