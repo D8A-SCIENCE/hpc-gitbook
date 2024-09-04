@@ -48,14 +48,14 @@
       {% for item in site.data.navigation %}
         {% if item.children %}
           {% for child in item.children %}
-            {% if item.url %}
-              {% if item.url == page.url %}
+            {% if child.url %}
+              {% if child.url == page.url %}
                 {% assign found = true %}
               {% elsif found %}
-                {% assign next_page = item %}
+                {% assign next_page = child %}
                 {% break %}
               {% else %}
-                {% assign prev_page = item %}
+                {% assign prev_page = child %}
               {% endif %}
             {% endif %}
           {% endfor %}
