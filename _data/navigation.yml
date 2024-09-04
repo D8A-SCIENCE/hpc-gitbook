@@ -7,8 +7,6 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/create.html
     - title: 👋 Login & Basic Setup
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/login-and-basic-setup.html
-    - title: 🗺 PBSTOP - Your Cluster Roadmap
-      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/pbstop-your-cluster-roadmap.html
     - title: 🐍 Uploading Files
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
     - title: Using the Jump Server and Configuring SSH
@@ -20,6 +18,8 @@
       url: /hpc-gitbook/the-batch-system/what-is-the-batch-system.html
     - title: 👷 Jobs
       url: /hpc-gitbook/the-batch-system/jobs.html
+    - title: 🗺 PBSTOP - Your Cluster Roadmap
+      url: /hpc-gitbook/the-batch-system/pbstop-your-cluster-roadmap.html
     - title: Interactive Jobs
       url: /hpc-gitbook/the-batch-system/interactive-jobs.html
     - title: Non-Interactive Jobs
