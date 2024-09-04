@@ -47,13 +47,19 @@
 
       {% for item in site.data.navigation %}
         {% if item.url %}
+          {{ item.title }} has url,
           {% if item.url == page.url %}
+            and its this page,
             {% assign found = true %}
           {% elsif found %}
+            but its not this page (but found is true),
             {% assign next_page = item %}
+            so we assume this is the next page and break.
             {% break %}
           {% else %}
+            but its not this page (and found is still false),
             {% assign prev_page = item %}
+            so we set this as the prevpage for now and continue.
           {% endif %}
         {% endif %}
       {% endfor %}
