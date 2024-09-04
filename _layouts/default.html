@@ -47,13 +47,11 @@
 
       {% for item in site.data.navigation %}
         {% if item.url %}
-          {% if found %}
-            {% assign next_page = item %}
-            {% break %}
-          {% endif %}
-
           {% if item.url == page.url %}
             {% assign found = true %}
+          {% elsif found %}
+            {% assign next_page = item %}
+            {% break %}
           {% else %}
             {% assign prev_page = item %}
           {% endif %}
