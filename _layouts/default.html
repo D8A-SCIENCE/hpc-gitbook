@@ -46,8 +46,9 @@
       {% assign found = false %}
 
       {% for item in site.data.navigation %}
+        {{ item.title }}...
         {% if item.url %}
-          {{ item.title }} has url,
+          has url,
           {% if item.url == page.url %}
             and its this page,
             {% assign found = true %}
@@ -62,6 +63,7 @@
             so we set this as the prevpage for now and continue.
           {% endif %}
         {% endif %}
+        (continuing...)
       {% endfor %}
 
 
