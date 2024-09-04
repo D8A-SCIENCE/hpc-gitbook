@@ -46,21 +46,20 @@
       {% assign found = false %}
 
       {% for item in site.data.navigation %}
-        {% if found %}
-          {% if item.url %}
+        {% if item.url %}
+          {% if found %}
             {% assign next_page = item %}
             {% break %}
           {% endif %}
-        {% else %}
+
           {% if item.url == page.url %}
             {% assign found = true %}
           {% else %}
-            {% if item.url %}
-              {% assign prev_page = item %}
-            {% endif %}
+            {% assign prev_page = item %}
           {% endif %}
         {% endif %}
       {% endfor %}
+
 
       <div class="page-navigation">
         {% if prev_page %}
