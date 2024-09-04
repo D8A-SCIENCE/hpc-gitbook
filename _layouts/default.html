@@ -46,24 +46,20 @@
       {% assign found = false %}
 
       {% for item in site.data.navigation %}
-        {{ item.title }}...
-        {% if item.url %}
-          has url,
-          {% if item.url == page.url %}
-            and its this page,
-            {% assign found = true %}
-          {% elsif found %}
-            but its not this page (but found is true),
-            {% assign next_page = item %}
-            so we assume this is the next page and break.
-            {% break %}
-          {% else %}
-            but its not this page (and found is still false),
-            {% assign prev_page = item %}
-            so we set this as the prevpage for now and continue.
-          {% endif %}
+        {% if item.children %}
+          {% for child in item.children %}
+            {% if item.url %}
+              {% if item.url == page.url %}
+                {% assign found = true %}
+              {% elsif found %}
+                {% assign next_page = item %}
+                {% break %}
+              {% else %}
+                {% assign prev_page = item %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
-        (continuing...)
       {% endfor %}
 
 
