@@ -40,42 +40,8 @@
     <div class="content">
       {{ content }}
 
-      <!-- adding previous/next links -->
-      {% assign prev_page = null %}
-      {% assign next_page = null %}
-      {% assign found = false %}
-      {% assign keepgoing = true %}
 
-      {% for parent in site.data.navigation %}
-        {{ parent.title }}...
-        {% if parent.children and keepgoing %}
-          has children...
-          {% for child in parent.children %}
-            child {{ child.title }}...
-            {% if child.url %}
-              has url, 
-              {% if found %}
-                found true, 
-                {% assign next_page = child %}
-                so nextpage is {{ next_page.title }} and break...
-                {% assign keepgoing = false %}
-                {% break %}
-              {% endif %}
-
-              {% if child.url == page.url %}
-                its this page,
-                {% assign found = true %}
-              {% else %}
-                {% assign prev_page = child %}
-                its not this page so make {{ prev_page.title }}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-
-
-      <div class="page-navigation">
+      <!-- <div class="page-navigation">
         {% if prev_page %}
           <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
         {% endif %}
@@ -83,7 +49,7 @@
         {% if next_page %}
           <a href="{{ next_page.url }}" class="next-button">Next: {{ next_page.title }}</a>
         {% endif %}
-      </div>
+      </div> -->
     </div>
   </div>
 </body>
