@@ -46,8 +46,9 @@
       {% assign next_page = null %}
       {% assign found = false %}
       {% assign done = false %}
+      {%- capture full_url -%}/hpc-gitbook{{ page.url }}{%- endcapture %}
 
-      This page is {{ page.url }},
+      This page is {{ full_url }},
 
       {% for item in site.data.navigation %}
         {% if done %}
@@ -69,7 +70,7 @@
                 set nextpage ({{ child.url }}),
                 {% assign next_page = child %}
                 {% assign done = true %}
-              {% elsif child.url == page.url %}
+              {% elsif child.url == full_url %}
                 <!-- this must be current page -->
                 found home, setting found=true,
                 {% assign found = true %}
