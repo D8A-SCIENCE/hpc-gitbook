@@ -40,8 +40,52 @@
     <div class="content">
       {{ content }}
 
+      <!-- the following should win an award for awful code -->
 
-      <!-- <div class="page-navigation">
+      {% assign prev_page = null %}
+      {% assign next_page = null %}
+      {% assign found = false %}
+      {% assign done = false %}
+
+      This page is {{ page.url }},
+
+      {% for item in site.data.navigation %}
+        {% if done %}
+          done (outer loop),
+          {% break %}
+        {% endif %}
+
+        {% if item.children %}
+          {% for child in item.children %}
+            {% if done %}
+              done (inner loop),
+              {% break %}
+            {% endif %}
+
+            {% if child.url %}
+              Child ({{ child.title }}) ({{ child.url }}),
+              {% if found %}
+                <!-- we found current page already, this must be next page -->
+                set nextpage ({{ child.url }}),
+                {% assign next_page = child %}
+                {% assign done = true %}
+              {% elsif child.url == page.url %}
+                <!-- this must be current page -->
+                found home, setting found=true,
+                {% assign found = true %}
+              {% else %}
+                <!-- haven't found current page and its not this one, 
+                 (re)set prev_page -->
+                set prevpage ({{ child.url }}),
+                {% assign prev_page = child %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      complete.
+
+      <div class="page-navigation">
         {% if prev_page %}
           <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
         {% endif %}
@@ -49,7 +93,8 @@
         {% if next_page %}
           <a href="{{ next_page.url }}" class="next-button">Next: {{ next_page.title }}</a>
         {% endif %}
-      </div> -->
+      </div>
+
     </div>
   </div>
 </body>
