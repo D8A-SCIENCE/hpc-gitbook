@@ -11,6 +11,8 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
     - title: Using the Jump Server and Configuring SSH
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
+    - title: 🐍 Using Python and Conda
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/conda-environments.html
 
 - title: The Batch System
   children:
@@ -31,10 +33,8 @@
 
 - title: Using Python & Batch
   children:
-    - title: 🐍 Conda Environments
-      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/conda-environments.html
     - title: Python + Conda in a Job
-      url: /hpc-gitbook/the-batch-system/running-python-within-a-job.html
+      url: /hpc-gitbook/parallel-computing/running-python-within-a-job.html
     - title: Python & MPI
       url: /hpc-gitbook/parallel-computing/launching-parallel-programs-on-the-hpc-using-mpi.html
     - title: Python & Dask
