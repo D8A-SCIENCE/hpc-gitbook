@@ -8,7 +8,7 @@ By submitting jobs, we reserve the resources on the nodes for ourselves. If we w
 
 There are two common ways to approach this resource management and scheduling problem: 
 
-- [**Torque**](https://en.wikipedia.org/wiki/TORQUE) (Terascale Open-source Resource and Queue Manager), which uses PBS (Portable Batch System), and is integrated with a scheduler like Maui or Moab, and
+- [**Torque**](https://en.wikipedia.org/wiki/TORQUE) (Terascale Open-source Resource and Queue Manager), which uses PBS (Portable Batch System) and is integrated with a scheduler like Maui or Moab.
 
 - [**Slurm**](https://en.wikipedia.org/wiki/Slurm_Workload_Manager) (Simple Linux Utility for Resource Management).  
 
@@ -19,5 +19,3 @@ Most of the resources in this guide (as of September 2024) are written for Torqu
 Both systems use a Message Passing Interface (MPI) to coordinate processes in parallel, and both can run jobs in batch mode or interactive mode, among other similarities, although there also many differences, like where and how jobs are submitted ([check out this summary](https://www.wm.edu/offices/it/services/researchcomputing/using/running_jobs_slurm/))--- so even instructions written for a Torque context will likely still provide useful help in a Slurm context, with appropriate caution.
 
 In the next post we'll cover basics of jobs, the job queue, and commands for Torque and Slurm, before diving into some more specific examples.
-
-####

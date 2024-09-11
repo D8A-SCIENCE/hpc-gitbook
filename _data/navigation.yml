@@ -7,11 +7,11 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/create.html
     - title: 👋 Login & Basic Setup
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/login-and-basic-setup.html
-    - title: 🐍 Uploading Files
+    - title: 📁 Uploading Files
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
-    - title: Using the Jump Server and Configuring SSH
+    - title: 🔒 Using the Jump Server and Configuring SSH
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
-    - title: 🐍 Using Python and Conda
+    - title: 🐍 Intro to using Python and Conda
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/conda-environments.html
 
 - title: The Batch System
@@ -20,14 +20,14 @@
       url: /hpc-gitbook/the-batch-system/what-is-the-batch-system.html
     - title: 👷 Jobs
       url: /hpc-gitbook/the-batch-system/jobs.html
-    - title: 🗺 PBSTOP - Your Cluster Roadmap
-      url: /hpc-gitbook/the-batch-system/pbstop-your-cluster-roadmap.html
     - title: Interactive Jobs
       url: /hpc-gitbook/the-batch-system/interactive-jobs.html
     - title: Non-Interactive Jobs
       url: /hpc-gitbook/the-batch-system/non-interactive-jobs.html
     - title: Checking the status of your jobs
       url: /hpc-gitbook/the-batch-system/checking-the-status-of-your-jobs.html
+    - title: 🗺 PBSTOP - Your Cluster Roadmap
+      url: /hpc-gitbook/the-batch-system/pbstop-your-cluster-roadmap.html
     - title: Deleting Jobs
       url: /hpc-gitbook/the-batch-system/deleting-jobs.html
 

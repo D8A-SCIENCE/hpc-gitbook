@@ -27,15 +27,11 @@ Below we will cover some basic commands for Torque and Slurm to understand the j
 
 ## Basic Commands
 
-Most basic commands have analogues in Torque/Slurm.  Tor`q`ue commands typically start with `q`, while `S`lurm commands typically start with `s`.
+Most basic commands have analogues in Torque/Slurm.  Tor`q`ue commands typically start with `q`, while `S`lurm commands typically start with `s`.  The HPC provides a great Rosetta Stone between the two flavors of resource management on their updated page [here](https://www.wm.edu/offices/it/services/researchcomputing/using/running_jobs_slurm/).
 
-`qstat`, `squeue` - Provides a list of all jobs currently in the system, requested times, status ("R" for running, "Q" for in queue) and other factors.  You may also provide a username flag, for example: `qstat -u <username>` to limit the list to *your* current jobs.
+For example, here are some Torque specific commands.  We'll cover these and the Slurm specific ones in subsequent posts.
 
-**Slurm-specific:**
-
-*To-do*
-
-**Torque-specific:**
+`qstat` - Provides a list of all jobs currently in the system, requested times, status ("R" for running, "Q" for in queue) and other factors.  You may also provide a username flag, for example: `qstat -u <username>` to limit the list to *your* current jobs.
 
 `showstats` - Provides a synopsis of cluster-wide availability.
 

@@ -12,6 +12,8 @@ scp myFile.txt <user>@bora.sciclone.wm.edu:test
 
 If your [config file is setup](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html), this can simplify to just `scp myFile.txt bora:test`.
 
+(**Note:** even if you don't want the file to go in a subfolder on your remote home, you still need the colon and some placeholder like `~`.)
+
 But there are a wide range of tools you can use to get files onto the HPC --- another is [rsync](https://www.samba.org/rsync/).  
 
 While not appropriate for large files (say, >100Gb), there are also nice GUI options, like [filezilla](https://filezilla-project.org/), a free FTP platform. 

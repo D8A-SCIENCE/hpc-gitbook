@@ -1,6 +1,14 @@
 # Non-Interactive Jobs
 
-Non-Interactive jobs are much more common, however they require what we call a job script. This is just a text file that might look like the following:
+Non-Interactive jobs are much more common, however they require what we call a job script. 
+
+## Slurm
+
+**To do.**
+
+## Torque
+
+In Torque, a job script is just a text file that might look like the following:
 
 ```
 #!/bin/tcsh
