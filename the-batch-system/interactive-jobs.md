@@ -84,9 +84,7 @@ If you run the above line from your home directory, you should see something sim
 
 ![](/hpc-gitbook/assets/images/ijob.png)
 
-On line 11 in the screenshot above, you can see **\[vx01]** as opposed to the **\[vortex]** in line 12. This means that now that you have launched a job, you are no longer running on the main Vortex infrastructure. Instead, you have now checked out 12 processors on Vortex Node 1 and are running your code from there. If the line read instead **\[vx02]**, that would indicate you were on Vortex Node 2.&#x20;
+<img src="/hpc-gitbook/assets/images/ijob.png" alt="Torque example" width="90%">
 
-It however doesn't matter which node you are actually on. Any Conda environments you've created and any files you have have will exist just the same on any node. To see this, type in `ls`. You'll see the same folders you saw when you ran `ls` from outside of the job. No matter what physical node you are running on on Vortex, you'll always see the same folders and files.
 
-When you are done in an interactive job, you can exit by hitting `ctrl + d`
-
+On line 11 in the screenshot above, you can see **\[vx01]** as opposed to the **\[vortex]** in line 12. This means that now that you have launched a job, you are no longer running on the main Vortex infrastructure. Instead, you have now checked out 12 processors on Vortex Node 1 and are running your code from there. If the line read instead **\[vx02]**, that would indicate you were on Vortex Node 2.&#x20;.

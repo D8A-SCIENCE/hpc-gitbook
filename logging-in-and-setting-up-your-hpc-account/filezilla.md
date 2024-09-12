@@ -14,13 +14,14 @@ If your [config file is setup](https://d8a-science.github.io/hpc-gitbook/logging
 
 (**Note:** even if you don't want the file to go in a subfolder on your remote home, you still need the colon and some placeholder like `~`.)
 
-But there are a wide range of tools you can use to get files onto the HPC --- another is [rsync](https://www.samba.org/rsync/).  
+But there are a wide range of tools you can use to get files onto the HPC --- another is the SSH Secure File Transfer Protocol, or [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server).  Another is [rsync](https://www.samba.org/rsync/).  
 
-While not appropriate for large files (say, >100Gb), there are also nice GUI options, like [filezilla](https://filezilla-project.org/), a free FTP platform. 
+The HPC has a whole page on file transfer also, [check it out](https://www.wm.edu/offices/it/services/researchcomputing/using/xfers/).
 
-This brief guide shows how to do just that.
 
-## Install
+## Another option: Firezilla
+
+While not appropriate for large files (say, >100Gb), there are also nice GUI options, like [filezilla](https://filezilla-project.org/), a free FTP platform. This brief guide shows how to do just that.
 
 FileZilla is predominantly a GUI-based way to access FTP and SFTP sites, and as such has a simple graphical installer you can download for any platform here: [https://filezilla-project.org/](https://filezilla-project.org/)
 
