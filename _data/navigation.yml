@@ -72,4 +72,6 @@
       url: /hpc-gitbook/k8s/envWithPod.html
     - title: One Pod Torch with Data
       url: /hpc-gitbook/k8s/singlePodTorch.html
+    - title: Deploying Ollama on K8S
+      url: /hpc-gitbook/k8s/ollama-example.html
 
