@@ -78,6 +78,7 @@
       {% endfor %}
 
       <div class="page-navigation">
+        {{ page.url }}
         {% unless page.url == "/index.html" %}
 
           {% if prev_page %}
