@@ -78,8 +78,7 @@
       {% endfor %}
 
       <div class="page-navigation">
-        {{ page.url }}
-        {% unless page.url == "/index.html" %}
+        {% unless page.url == "/" %}
 
           {% if prev_page %}
             <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
