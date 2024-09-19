@@ -7,14 +7,14 @@ Just like SSH provides us a secure *shell* for working with the cluster, we also
 The most straightforward and out-of-the-box way is using the command line tool [`scp`](https://haydenjames.io/linux-securely-copy-files-using-scp/).  Let's say you're on your local machine and want to move a file in your current working directory to the subfolder `test` in your home directory on the cluster.  You can do (for example):
 
 ```
-scp myFile.txt <user>@bora.sciclone.wm.edu:test
+scp myFile.txt <user>@bora.sciclone.wm.edu:test/
 ```
 
-If your [config file is setup](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html), this can simplify to just `scp myFile.txt bora:test`.
+If your [config file is setup](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html), this can simplify to just `scp myFile.txt bora:test/`.  (And don't forget the trailing `/` or else it will think its the filename and you want to rename `myFile.txt` to `test`.)
 
-(**Note:** even if you don't want the file to go in a subfolder on your remote home, you still need the colon and some placeholder like `~`.)
+(**Note:** even if you don't want the file to go in a subfolder on your remote home, you still need the colon and some placeholder like `~/`.)
 
-But there are a wide range of tools you can use to get files onto the HPC --- another is the SSH Secure File Transfer Protocol, or [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server).  Another is [rsync](https://www.samba.org/rsync/).  
+But there are a wide range of tools you can use to get files onto the HPC.  Another is the SSH Secure File Transfer Protocol, or [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server), which creates a new command line session just for file transfer, which is convenient if you're doing several.  Another is [rsync](https://www.samba.org/rsync/).  
 
 The HPC has a whole page on file transfer also, [check it out](https://www.wm.edu/offices/it/services/researchcomputing/using/xfers/).
 

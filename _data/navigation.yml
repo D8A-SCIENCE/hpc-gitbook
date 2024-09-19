@@ -1,7 +1,7 @@
 - title: Distributed ML @ W&M
   url: /hpc-gitbook/index.html
 
-- title: Logging in and Setting up your HPC Account
+- title: Setting up your HPC Account
   children:
     - title: 🎉 Requesting an Account
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/create.html
@@ -11,9 +11,7 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
     - title: 🔒 Using the Jump Server and Configuring SSH
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
-    - title: 🐍 Intro to using Python and Conda
-      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/conda-environments.html
-
+    
 - title: The Batch System
   children:
     - title: 👩🌾 What is a batch system?
@@ -31,8 +29,10 @@
     - title: Deleting Jobs
       url: /hpc-gitbook/the-batch-system/deleting-jobs.html
 
-- title: Using Python & Batch
+- title: Using Python on the HPC
   children:
+    - title: 🐍 Intro to using Python and Conda
+      url: /hpc-gitbook/parallel-computing/conda-environments.html
     - title: Python + Conda in a Job
       url: /hpc-gitbook/parallel-computing/running-python-within-a-job.html
     - title: Python & MPI

@@ -78,13 +78,17 @@
       {% endfor %}
 
       <div class="page-navigation">
-        {% if prev_page %}
-          <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
-        {% endif %}
-      
-        {% if next_page %}
-          <a href="{{ next_page.url }}" class="next-button">Next: {{ next_page.title }}</a>
-        {% endif %}
+        {% unless page.url == "/index.html" %}
+
+          {% if prev_page %}
+            <a href="{{ prev_page.url }}" class="prev-button">Previous: {{ prev_page.title }}</a>
+          {% endif %}
+        
+          {% if next_page %}
+            <a href="{{ next_page.url }}" class="next-button">Next: {{ next_page.title }}</a>
+          {% endif %}
+
+        {% endunless %}
       </div>
 
     </div>
