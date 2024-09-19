@@ -66,7 +66,9 @@
       url: /hpc-gitbook/k8s/intro.html
     - title: Your First K8S Deployment
       url: /hpc-gitbook/k8s/yourFirstDeployment.html
-    - title: Persistence & Python
+    - title: Persistent storage (NFS and PVC)
+      url: /hpc-gitbook/k8s/persistence.html
+    - title: Using Python on K8S
       url: /hpc-gitbook/k8s/python_conda.html
     - title: Setting up Torch
       url: /hpc-gitbook/k8s/envWithPod.html

@@ -1,96 +1,89 @@
 # Setting up Python and Conda in K8S
-Depending on the base image you are using, the process to setup Conda and Python may be slightly different.  Here, we show how to do it using a common NVIDIA base image, but you may have to adapt some things to your own use case.
 
-## File Persistence in Kubernetes
-While individual pods are ephemeral (i.e., nothing written in them is saved), it is possible to have those pods write to locations that are persistent, and that multiple pods can access.  In kubernetes, these are referred to as *persistent volumes*.  You will be assigned a volume for your user.  In this example, we will create our conda environments inside a persistent volume, so that future pods can access our environments at later dates.
+We have several different options to work with Python on K8S.
 
-## Accessing a persistent volume
-To access a persistent volume, you must specify both (a) the claimName for your volume, which the HPC team will provide, and (b) the path you want your persistent volume to be mounted in inside the pod.  In the below example, I have been asigned a 500GB volume with the claimName dsmr-vol-01.  You will not have access to this claim, and will need to replace it with your own.  I am mounting this persistent volume to the path /kube/home within my pod, and then printing out the total disk space available.
+- Use an existing off-the-shelf image (from Docker Hub, GHCR) that has the Python version and additional packages needed already installed.  This is the easiest, but also least flexible option.
 
+- Use an off-the-shelf OS + drivers-only base image, and install Python/Conda and all additional dependencies in your persistent volume.  (Note: this will not work for NFS mounted drives.)
+
+- (Related/Hybrid) (Not recommended) Use an off-the-shelf image with Python, and work in a virtual environment on your NFS mounted home drive (for example in `~/.conda/envs`).  Although this will work, it is buggy and could create complicated dependency issues with your SciClone venv.
+
+- Create a custom image that has exactly the base image, Python version, packages, and any other software/drivers you need.  **This is the preferred option** in most cases, and we'll cover in a separate post ("Creating custom images").
+
+
+## Using an off-the-shelf image with Python
+
+The easiest option in many cases will be to find an existing image on one of the whitelisted image repositories (Docker Hub is the current CM default) that has what you need.  Then just create a pod with this image, attach it to your NFS drive for data/scripts, and off you go.
+
+Here's an example manifest:
+
+`testPythonPod.yml`
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: claim-example
+  name: test-python-pod
 spec:
-  restartPolicy: Never
-  activeDeadlineSeconds: 1800  # 30 minutes
+  activeDeadlineSeconds: 1800  # Pod terminates after 30 min
+  securityContext:
+    runAsUser: 123456
+  containers:
+    - name: test-py-pod-container
+      image: "python:3.11-slim"
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "1"
+      volumeMounts:
+      - name: home
+        mountPath: "/sciclone/home/stmorse"
+      command: ["/bin/sh", "-c", "sleep 1800"]
+      stdin: true
+      tty: true
   volumes:
-    - name: home-volume
-      persistentVolumeClaim:
-        claimName: dsmr-vol-01
-  containers:
-    - name: conda-container
-      image: "nvidia/samples:vectoradd-cuda11.2.1"
-      volumeMounts:
-        - name: home-volume
-          mountPath: /kube/home/
-      command: ["/bin/sh", "-c"]
-      args:
-        - |
-          echo "Disk space usage for /kube/home volume:"
-          df -h /kube/home
-          echo "Sleeping indefinitely..."
-          sleep infinity
-```
-As a reminder, you would use:
-kubectl apply -f persistence.yml
-
-to deploy your pod.  You can then monitor it's progress being created with:
-kubectl get pods
-
-While the pod is being created, you will see "ContainerCreating".
-
-Finally, to inspect the output of your pod, you can use:
-kubectl logs claim-example
-
-In my case, that results in the output:
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/e7def3cd-fda0-4cbf-aa10-79cad37a05c7)
-
-Showing that I have 500 GB of space.
-
-Note that pods with claims will take a few seconds longer to spin up, as K8S must attach the appropriate disks to your pod.  
-
-## Creating an example persistent file
-Now that we have a pod running with access to our persistent volume, we can log into that pod in an interactive job, create a file, then delete the pod to illustrate that the content remains available.  To do this, first type in:
-```
-kubectl exec -it claim-example -- /bin/bash
+  - name: home
+    nfs:
+      server: 128.239.56.166
+      path: /sciclone/home/stmorse
 ```
 
-Once you are logged into the pod, we are going to create two files - one in the normal file system (that will be destroyed), and another in the persistent file system (that will be retained).  First let's create the file we know will be destroyed:
+Let's create this pod and enter it in interactive mode (`kubectl create -f testPythonPod.yml` and `kubectl exec -it test-python-pod -- /bin/bash`).
+
+Let's check we have Python, where it lives, and which version we have:
+
 ```
-root@claim-example:~# echo "This file is a goner" > ~/doomedFile
-root@claim-example:~# cat ~/doomedFile
-This file is a goner
+123456@test-python-pod:/$ which python
+/usr/local/bin/python
+123456@test-python-pod:/$ python -V
+Python 3.11.10
 ```
 
-Now, let's create a file in our persistent volume:
+Perfect!  Let's check what packages this image with:
+
 ```
-root@claim-example:~# echo "This file will live on" > /kube/home/persistentFile
-root@claim-example:~# cat /kube/home/persistentFile 
-This file will live on
+123456@test-python-pod:/$ pip list
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Package    Version
+---------- -------
+pip        24.0
+setuptools 65.5.1
+wheel      0.44.0
 ```
 
-Note the path here - /kube/home .  This is the same path that's specified in our yml file as the mount point for our persistent volume:
-```yaml
-  containers:
-    - name: conda-container
-      image: "nvidia/samples:vectoradd-cuda11.2.1"
-      volumeMounts:
-        - name: home-volume
-          mountPath: /kube/home/
-```
+Pretty plain.  We can try to install a package, like `pip install requests`, but it will return an error like `ERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: '/.local'`.  You can try including the flag `--no-cache-dir` but you'll get the same error.  Because you don't have root privileges in the container, there is no way to fix this problem.
 
-Now that we have our files, let's destroy the pod and check it worked.  Type `exit` to get out of the pod, then `kubectl delete pod claim-example` to delete the pod.  Once it's deleted, create it again using `kubectl apply -f persistence.yml`, and log back in with `kubectl exec -it claim-example -- /bin/bash`.  If you try to cat the two files we just created, you'll now see:
-```
-root@claim-example:/# cat ~/doomedFile
-cat: /root/doomedFile: No such file or directory
-root@claim-example:/# cat /kube/home/persistentFile 
-This file will live on
-```
+So, if you can find a Python image that fits the bill (and there are many!  For [`pytorch`](https://hub.docker.com/r/pytorch/pytorch), for [`conda`](https://hub.docker.com/r/conda/miniconda3/), and many others), then you'll need to pursue another option.
 
-# Installing Conda in our Persistent Directory
-In order to get conda environments working, we'll want to install them into our persistent volume claim.  To do this, we can use the below yaml code.  Most of this is code you've seen before - but there are a few notable differences.  First, we aren't explicitly requesting resources, as we don't really care what we get here - anything from 1 CPU up will work.  Second, we're both loading our base image (the NVIDIA base), and also installing things within that base image - in this case, the "wget" tool using apt-get.  This is because wget doesn't exist on our base image, and we need it to install conda (note we also have to defined a keyserver here - this is because of some unique issues related to the NVIDIA image, and would not be common to all cases). Finally, and most importantly, we download and install conda to the path we specify with an environmental variable.  If this path is on your persistent volume, then it will stay installed between sessions.
+Next we'll discuss an option using a PV.  If you don't have a PV or don't wanna, your next option is to create your own custom image.
+
+
+## Installing Conda in our Persistent Directory
+
+Below is an example manifest that pulls a base NVIDIA/CUDA image, attaches a PVC, and then installs Miniconda in the PVC.  
+
+> **This example is from an older version of this tutorial and may no longer work.**
+
+Most of this is code you've seen before - but there are a few notable differences.  First, we aren't explicitly requesting resources, as we don't really care what we get here - anything from 1 CPU up will work.  Second, we're both loading our base image (the NVIDIA base), and also installing things within that base image - in this case, the `wget` tool using apt-get.  This is because wget doesn't exist on our base image, and we need it to install conda (note we also have to defined a keyserver here - this is because of some unique issues related to the NVIDIA image, and would not be common to all cases). Finally, and most importantly, we download and install conda to the path we specify with an environmental variable.  If this path is on your persistent volume, then it will stay installed between sessions.
 
 > Of note, this particular yaml does not have a sleep command at the end.  Thus, once conda is installed, it will release the resources for the pod back to the cluster.
 
@@ -155,6 +148,7 @@ Go ahead and deploy this yml file via `kubectl apply -f 1_installConda.yml`.  On
 ![image](https://github.com/heatherbaier/dist-ml/assets/7882645/cba2187c-cb76-491e-93ea-042b9789027d)
 
 # Exploring persistence with Conda
+
 Now that conda is installed in our persistent directory, we can use it in any pod we want.  You can do this interactively, or through a dedicated pod. We'll cover the dedicated pod approach in the next tutorial, but here we'll show how you can do it interactively.
 
 First, create a simple pod that we can log in to that has our persistent volume attached to it, and adds the conda path to our global path:

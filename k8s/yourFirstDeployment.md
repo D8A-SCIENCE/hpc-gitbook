@@ -93,8 +93,10 @@ The above pod does the following:
 Deploying pods in kubernetes is very simple.  In this case, you would run:
 
 ```bash
-kubectl apply -f myFirstPod.yml
+kubectl create -f myFirstPod.yml
 ```
+
+(Another nearly equivalent option is `kubectl apply -f myFirstPod.yml`, which you will also see used throughout these tutorials.)
 
 If succesful, you will receive a message indicating that "pod/resource-info-pod" was created.  You can confirm the status of your pods by typing:
 
