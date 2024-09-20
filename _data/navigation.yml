@@ -32,13 +32,13 @@
 - title: Using Python on the HPC
   children:
     - title: 🐍 Intro to using Python and Conda
-      url: /hpc-gitbook/parallel-computing/conda-environments.html
+      url: /hpc-gitbook/python-on-hpc/conda-environments.html
     - title: Python + Conda in a Job
-      url: /hpc-gitbook/parallel-computing/running-python-within-a-job.html
+      url: /hpc-gitbook/python-on-hpc/running-python-within-a-job.html
     - title: Python & MPI
-      url: /hpc-gitbook/parallel-computing/launching-parallel-programs-on-the-hpc-using-mpi.html
+      url: /hpc-gitbook/python-on-hpc/launching-parallel-programs-on-the-hpc-using-mpi.html
     - title: Python & Dask
-      url: /hpc-gitbook/parallel-computing/dask_intro.html
+      url: /hpc-gitbook/python-on-hpc/dask_intro.html
 
 - title: Distributed sklearn
   children:
