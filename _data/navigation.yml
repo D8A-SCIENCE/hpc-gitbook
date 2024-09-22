@@ -71,7 +71,7 @@
     - title: Using Python on K8S
       url: /hpc-gitbook/k8s/python_conda.html
     - title: Creating custom images
-      url: /hpc-gitbook/k8s/creating-an-image.md
+      url: /hpc-gitbook/k8s/creating-an-image.html
     - title: Setting up Torch
       url: /hpc-gitbook/k8s/envWithPod.html
     - title: One Pod Torch with Data
