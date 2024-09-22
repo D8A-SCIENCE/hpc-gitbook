@@ -46,7 +46,7 @@ import json
 response = requests.get('https://api.github.com/events')
 event = response.json()[0]
 
-print(f'Last event: {event['type']} | {event['repo']['name']}')
+print(f'Last event: {event["type"]} | {event["repo"]["name"]}')
 ```
 
 We chose this as an example because it is simple, demonstrates that Pods are connected to the internet, requires only pulling one additional simple Python package, and shows how to use Python scripts as auto-run from an image with print-statement logging.
@@ -64,7 +64,7 @@ To build an image locally and push to Docker Hub, we will first need:
 
 As a first test you have both these things operational, let's ensure Podman is logged in to your Docker Hub with
 
-```
+```bash
 podman login docker.io
 ```
 
@@ -74,7 +74,7 @@ Now, create a folder on your local machine called `test-image` and make a file c
 
 Now in Terminal `cd` into the folder containing this file, and run the commands:
 
-```
+```bash
 podman build -t test-image .
 podman push docker.io/your-dockerhub-username/test-image:latest
 ```
@@ -105,9 +105,9 @@ Now create a directory called `project`, and in it create two files: a `Dockerfi
 
 In your Dockerfile, use the simple example from before, and same for `script.py`.  Make sure you push all edits to remote and check everything looks correct on Github before moving to the next step.
 
-Now, we will create a workflow that builds this image whenever we make a change to the `project` directory.  In your `test-repo` repo, click on the **Actions** tab and then configure the option for Docker Image:
+Now, we will create a workflow that builds this image whenever we make a change to the `project` directory.  In your `test-repo` repo, click on the **Actions** tab and then the option for Docker Image:
 
-(image)
+<img src="/hpc-gitbook/assets/images/gh_actions.png" alt="GH Actions" width="90%">
 
 This will initiate a YML file, named by default something like `docker-image.yml`, and put it in an auto-created new folder `.github/workflows` in your repo.  Your repo now looks like this:
 
@@ -154,8 +154,8 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}   
+        username: {% raw %}${{ github.actor }}{% endraw %}
+        password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
         # note: you don't need to setup this token -- GH does it for you
 
     # this step converts your GH username to lowercase if needed (required for ghcr)
