@@ -162,7 +162,7 @@ jobs:
     # and sets the correct environment variable
     - name: Define lowercase repository owner
       id: repo
-      run: echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      run: {% raw %}echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV{% endraw %}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
@@ -171,7 +171,7 @@ jobs:
         # build from whatever Dockerfile it finds here
         context: ./project   
         push: true
-        tags: ghcr.io/${{ env.REPO_OWNER }}/test-project-image:latest
+        tags: {% raw %}ghcr.io/${{ env.REPO_OWNER }}/test-project-image:latest{% endraw %}
 ```
 
 Now, commit the changes, and click on Actions again to check on the build's progress.  You can also view the step-by-step logs to debug, by clicking on the workflow run and then on the one job `build_and_push` itself.  Once it's queued, executed, and completed, the action will show a green check icon and you are done! --- Congratulations, your image is now available publicly on `ghcr.io`.

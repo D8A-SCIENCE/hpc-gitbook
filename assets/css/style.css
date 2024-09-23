@@ -128,7 +128,11 @@ header h1 {
 
 
 /* Code sections.  Interacts with Rouge (Ruby) compiler */
+/* code is inline single backtick code blocks */
+/* pre(formatted) is triple backtick code blocks, 
+   and uses code embedded within it */
 
+/* for both pre and code sections */
 pre,
 code {
     font-size: 0.8rem;
@@ -137,8 +141,14 @@ code {
     font-family: "Roboto Mono", monospace;
 }
 
+/* where code is inline, include some padding */
 code {
     padding: 1px 5px;
+}
+
+/* where code is embedded in pre, no padding */
+pre code {
+  padding: 0;
 }
 
 pre {
