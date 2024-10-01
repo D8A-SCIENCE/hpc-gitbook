@@ -24,10 +24,10 @@
       url: /hpc-gitbook/the-batch-system/non-interactive-jobs.html
     - title: Checking the status of your jobs
       url: /hpc-gitbook/the-batch-system/checking-the-status-of-your-jobs.html
-    - title: 🗺 PBSTOP - Your Cluster Roadmap
-      url: /hpc-gitbook/the-batch-system/pbstop-your-cluster-roadmap.html
-    - title: Deleting Jobs
-      url: /hpc-gitbook/the-batch-system/deleting-jobs.html
+    # - title: 🗺 PBSTOP - Your Cluster Roadmap
+    #   url: /hpc-gitbook/the-batch-system/pbstop-your-cluster-roadmap.html
+    # - title: Deleting Jobs
+    #   url: /hpc-gitbook/the-batch-system/deleting-jobs.html
 
 - title: Using Python on the HPC
   children:
