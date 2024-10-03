@@ -18,4 +18,29 @@ Most of the resources in this guide (as of September 2024) are written for Torqu
 
 Both systems use a Message Passing Interface (MPI) to coordinate processes in parallel, and both can run jobs in batch mode or interactive mode, among other similarities, although there also many differences, like where and how jobs are submitted ([check out this summary](https://www.wm.edu/offices/it/services/researchcomputing/using/running_jobs_slurm/))--- so even instructions written for a Torque context will likely still provide useful help in a Slurm context, with appropriate caution.
 
-In the next post we'll cover basics of jobs, the job queue, and commands for Torque and Slurm, before diving into some more specific examples.
+Now let's cover basics of jobs, the job queue, and commands for Torque and Slurm, before diving into some more specific examples.
+
+
+## 👷 Jobs
+
+### What is a Job?
+
+A batch system manages the allocation of resources on the cluster to users via jobs.  A job is basically a resource check-out (i.e. a reservation for a plot in the "community garden"). When we launch a job, we tell the computer a couple basic things:
+
+1. Which sub-cluster you would like to run on
+2. How many nodes and processors you would like to check out
+3. How long you want your resources for (i.e. the maximum amount of time you expect your program to take to run) - this is called the _walltime_
+4. The name of your job
+
+You can run either non-interactive or interactive jobs.
+
+
+### How the Job Queue works
+
+When you submit a job (interactive or non-interactive), you **must** specify a few attributes regarding what type of computer node(s) you want to use for your analysis.  These include the number of nodes, the cluster (i.e., what computer architecture - including memory - you want), the length you want the resources for (hours, minutes and seconds), and the number of processors you need on the node. 
+
+Based on these factors, you are entered into a queue - if you request relatively few resources for short periods, the system aspires to give you resources as quickly as possible; jobs with larger walltimes and higher numbers of resources may take a long time before they are able to run.  The specific scheduler we use (Maui) seeks to optimize the cluster so that as many core-hours as is feasible can be provided across all requests.
+
+The take-away from this is that it is important to not request more than you need - i.e., launching more, smaller jobs will enable more flexibility in scheduling, and thus provide you with a higher likelihood of receiving resources.
+
+All of the above applies equally to servers running the Torque or Slurm resource managers.  Specific commands and procedures will differ, however, depending on the manager framework.
