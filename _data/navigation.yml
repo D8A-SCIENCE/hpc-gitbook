@@ -29,6 +29,8 @@
       url: /hpc-gitbook/python-on-hpc/conda-environments.html
     - title: Using Jupyter Notebooks
       url: /hpc-gitbook/python-on-hpc/jupyter.html
+    - title: Using an IDE (VSCode)
+      url: /hpc-gitbook/python-on-hpc/using-IDEs-on-hpc.html
     - title: Python + Conda in a Job
       url: /hpc-gitbook/python-on-hpc/running-python-within-a-job.html
     - title: Python & MPI
