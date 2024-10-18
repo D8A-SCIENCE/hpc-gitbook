@@ -1,10 +1,65 @@
 # Python + Conda in a Job
 
-Using python with anaconda on the cluster is nearly identical to how you use it on your frontend to configure environments.
+Using Python with Anaconda on the cluster in a non-interactive job basically just requires putting all the steps you would normally do interactively, in a batch job script.
 
-For example, if you follow the instructions in the section on creating [Conda Environments](https://hmbaier.gitbook.io/distributed-ml-w-and-m/logging-in-and-setting-up-your-hpc-account/conda-environments) on the node you log in on, when you [submit jobs](https://hmbaier.gitbook.io/distributed-ml-w-and-m/the-batch-system/non-interactive-jobs) you can then use the same environments like this:
+To follow the instructions below, we'll assume you're already familiar with working with Conda and environments from [this post](https://d8a-science.github.io/hpc-gitbook/python-on-hpc/conda-environments.html), and with writing basic batch job scripts from [this post](https://d8a-science.github.io/hpc-gitbook/the-batch-system/non-interactive-jobs.html).
 
+## Slurm
+
+Let's write a job script that allocates 1 gpu, loads Anaconda, activates an environment, and runs a simple script to test the GPU is working.
+
+I'll use a preconfigured environment called `torch-env` that has a CUDA-enabled PyTorch package distribution.
+
+Create a two-liner Python script to test our PyTorch package is working on GPUs:
+
+`torch-test.py`
+```bash
+import torch
+print(torch.cuda.is_available())
 ```
+
+and your corresponding job script:
+
+`torch-job.sh`
+```bash
+#!/bin/tcsh
+#SBATCH --job-name=ttest 
+#SBATCH -N 1 -n 1
+#SBATCH -t 0:30:00
+#SBATCH --gpus=1
+
+# load the anaconda module
+module load anaconda3/2021.05
+
+# activate your environment
+conda activate torch-env
+
+# ensure we're in the correct directory
+cd ~/tests/batch
+
+# run the script in this directory and save outputs to file
+python torch-test.py > output.out
+
+# print something to shell as confirmation
+echo "Complete"
+```
+
+Then submit with:
+
+```bash
+sbatch torch-job.sh
+```
+
+You'll see the submission confirmation with your job ID.  Now we can check on status with `sinfo` or `squeue` or `squeue -u <user>` as before.  Once it's complete, check your `slurm-<job id>.out` file for the "Complete" message, and your `output.out` file for the "True" message.
+
+Now you can run Python scripts in non-interactive jobs on the HPC!
+
+
+## Torque (archive)
+
+A near-equivalent for Torque is included below:
+
+```bash
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12
