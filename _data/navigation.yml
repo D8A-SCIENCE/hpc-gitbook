@@ -70,6 +70,8 @@
       url: /hpc-gitbook/k8s/python_conda.html
     - title: Creating custom images
       url: /hpc-gitbook/k8s/creating-an-image.html
+    - title: Accessing a Pod from a Browser
+      url: /hpc-gitbook/k8s/setting-up-website.html
     - title: Setting up Torch
       url: /hpc-gitbook/k8s/envWithPod.html
     - title: One Pod Torch with Data

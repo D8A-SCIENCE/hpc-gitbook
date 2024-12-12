@@ -1,9 +1,9 @@
 # Hosting a website on the cluster
 
-This is an explanation of how to set up port forwarding so that you can view a website hosted on a pod in a local web browser.
-The basic idea is that we will create a SOCKS5 proxy to tunnel into the cluster, then access the website via the pod's internal IP.
+This is an explanation of how to set up port forwarding so that you can view a website hosted on a pod in a local web browser.  The basic idea is that we will create a SOCKS5 proxy to tunnel into the cluster, then access the website via the pod's internal IP.  This can be useful to, for example: test services running with a pod/deployment, or to access a Jupyter kernel running in a container from a browser on your local machine.
 
-## Correctly exposing th application
+
+## Correctly exposing the application
 
 Ensure your Docker container is correctly serving your application.
 This will likely involve exposing a port in your Dockerfile
@@ -87,4 +87,5 @@ kubectl get pod <POD-NAME> -o jsonpath="{.status.podIP}"
 ```
 
 with the name of your pod.
+
 Access this address in Chrome at the exposed port, `http://<POD-IP>:<EXTERNAL-PORT>`. You should see your site.
