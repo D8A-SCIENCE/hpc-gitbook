@@ -8,7 +8,7 @@
     - title: 👋 Login & Basic Setup
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/login-and-basic-setup.html
     - title: 📁 Uploading Files
-      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/filezilla.html
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/moving-files.html
     - title: 🔒 Using the Jump Server and Configuring SSH
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
     

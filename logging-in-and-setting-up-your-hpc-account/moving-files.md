@@ -2,11 +2,20 @@
 
 ## How to get your files on the HPC
 
-Just like SSH provides us a secure *shell* for working with the cluster, we also need a way to secure *copy* or move files.
+Just like SSH provides us a secure *shell* for working with the cluster, we also need a way to secure *copy* or move files from one machine to another (for example, your local computer to the cluster).  We'll look at three approaches:
+
+- **Using command line tools like `scp` or `sftp`.**  This is probably the most reliable method and the best choice for large files, but is strictly for file transfer and can be cumbersome for complicated work.
+
+- **Using a GUI like Filezilla.**  This is essentially a wrapper of `sftp`, and makes file transfer a little more user-friendly, but is still strictly for file transfer and probably not a good choice for large files.
+
+- **Mounting a drive using `sshfs`.**  This is the most flexible option, since it allows moving and transferring files with your local, OS-native file explorer, *and* opening/editing files as if they were on your local machine.  Still not a great choice for moving large files (due to the risk of mid-transfer disconnect or syncing issues) but a good option for editing scripts --- we cover mounting a drive in a [separate post here](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/using-sshfs.html).
+
+
+## Using the command line
 
 The most straightforward and out-of-the-box way is using the command line tool [`scp`](https://haydenjames.io/linux-securely-copy-files-using-scp/).  Let's say you're on your local machine and want to move a file in your current working directory to the subfolder `test` in your home directory on the cluster.  You can do (for example):
 
-```
+```bash
 scp myFile.txt <user>@bora.sciclone.wm.edu:test/
 ```
 
@@ -25,7 +34,7 @@ While not appropriate for large files (say, >100Gb), there are also nice GUI opt
 
 FileZilla is predominantly a GUI-based way to access FTP and SFTP sites, and as such has a simple graphical installer you can download for any platform here: [https://filezilla-project.org/](https://filezilla-project.org/)
 
-## Basic Use
+### Basic Use
 
 <!-- ![step1](https://user-images.githubusercontent.com/7882645/190205224-068f3893-07a9-4bf5-8165-9e61e248266e.png) -->
 

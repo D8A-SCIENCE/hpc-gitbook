@@ -5,7 +5,7 @@ Using the clusters from a personal laptop not on the WM network requires you to 
 In this section, we'll summarize how to do this step, and then how to make our SSH lives easier by using SSH keys and setting up `~/.ssh/config`.
 
 
-## Using `bastion`
+## Using the Jump Server (bastion)
 
 WM isolates its clusters on an internal private network and controls outside access using a "bastion" host, which acts as a sort of gatekeeper between the outside world and the internal school network.  (The term *bastion* originally referred to a critical part of a fortification.) 
 
