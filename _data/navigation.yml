@@ -11,6 +11,8 @@
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/moving-files.html
     - title: 🔒 Using the Jump Server and Configuring SSH
       url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html
+    - title: Mounting a drive
+      url: /hpc-gitbook/logging-in-and-setting-up-your-hpc-account/using-sshfs.html
     
 - title: The Batch System
   children:
