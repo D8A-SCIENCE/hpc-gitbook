@@ -30,7 +30,7 @@
 
 # Distributed Sk-Learn
 
-- [Example Dataset](distributed-scikit/data.md)
+- [Example Dataset](distributed-scikit/data-loading/data.md)
 - [Random Search - Simple](distributed-scikit/randomSearch.md)
 - [Distribution Across Multiple Nodes with sklearn](distributed-scikit/mpi.md)
 - [Random Forest](distributed-scikit/rf.md)
@@ -44,9 +44,9 @@
 # Kubernetes
 
 - [Introduction to Kubernetes](k8s/intro.md)
-- [Your First K8S Deployment](k8s/yourFirstDeployment.md)
+- [Your First K8S Deployment](k8s/your-first-deployment/yourFirstDeployment.md)
 - [Setting up Python and Conda in K8S](k8s/python_conda.md)
 - [Creating custom images](k8s/creating-an-image.md)
 - [Hosting a website on the cluster](k8s/setting-up-website.md)
-- [Running Torch with Real Data in a Pod](k8s/singlePodTorch.md)
+- [Running Torch with Real Data in a Pod](k8s/single-pod-torch/singlePodTorch.md)
 - [Running Ollama on K8S](k8s/ollama-example.md)
