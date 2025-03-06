@@ -145,7 +145,7 @@ spec:
 Go ahead and deploy this yml file via `kubectl apply -f 1_installConda.yml`.  Once complete, it will install conda into your persistent claim to the mounted path /kube/home/.envs/conda .  You can monitor the progress of the conda installation by typing either `kubectl get pods` or `kubectl logs conda-install`.
 
 > Because we do not have a sleep command in this script, when it is done the `kubectl get pods` will show that the pod has completed:
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/cba2187c-cb76-491e-93ea-042b9789027d)
+![Conda installation complete](conda_install_complete.png)
 
 # Exploring persistence with Conda
 

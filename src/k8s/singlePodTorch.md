@@ -113,7 +113,7 @@ Once you run that command, we can run a command against the file-passthrough pod
 kubectl exec -it file-passthrough -- ls -la /kube/home
 ```
 If succesful, you should see something like this, including the new gpu.py file:
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/f123255f-5b44-458e-92e8-109b2f71e3d2)
+![File listing output](file_listing_output.png)
 
 # Running the python file on GPUs
 Once your file is copied over, you can shutdown the file-passthrough pod and launch the GPU pod that will actually process the data.  For now, we'll only request a single GPU in our pod, and 2 CPUs to help with batching:
@@ -162,5 +162,4 @@ spec:
 ```
 
 Go ahead and submit that with `kubectl apply -f 3_torchWithData.yml`, and then monitor the progress of torch using `kubectl logs torch-test`.  Note it may take around a minute for logs to start.  If the script works correctly, you should see CIFAR downloading, followed by a classification across a few epochs of training:
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/3e40f672-28da-41a3-baa2-a32895d3a120)
-
+![CIFAR training output](cifar_training_output.png)

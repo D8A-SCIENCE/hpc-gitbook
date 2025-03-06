@@ -106,7 +106,7 @@ kubectl get pods
 
 Which will show you the status of all of your running pods.  You should see something like this:
 
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/45d01c6f-2f1a-45d6-8014-c5c566cfcbb5)
+![Pod status output](pod_status_output.png)
 
 While you're waiting for it to fully create (you want "Running") you can use a command like
 
@@ -129,7 +129,7 @@ kubectl logs resource-info-pod
 
 You will see an output similar to this:
 
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/bea85702-6d72-42e1-8b02-cf42581011fd)
+![Pod logs output](pod_logs_output.png)
 
 > Note that logs are not persistent, and are deleted when the pod is deleted.
 
@@ -154,13 +154,13 @@ cat /etc/os-release
 
 This will output the base image the pod is using, which in this example is:
 
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/c8453e79-9910-4842-a5b3-b0d2c1b5797d)
+![OS release output](os_release_output.png)
 
 Once you're done, you can type "exit".
 
 > As you type "kubectl" a lot, you may want to bind it to something shorter.  To do so, go into your Kubernetes home directory and open `~/.bashrc`.  If you want to bind "kubectl" to just "k", you can add the line `alias k='kubectl'` to that file.  Once you save it and restart your shell, you can replace "kubectl" with just "k" from that moment onward.  For example, my own .bashrc looks like:
-
-> ![image](https://github.com/heatherbaier/dist-ml/assets/7882645/6c65863a-11fb-434f-ad2d-24558a22f20b)
+> 
+> ![Bashrc configuration](bashrc_config.png)
 
 
 ## Deleting your Pod
@@ -175,8 +175,7 @@ kubectl delete pod <name-of-pod>
 
 In this example, that would be kubectl delete pod resource-info-pod.  If succesful, that command will result in the output:
 
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/b0f65487-0b19-47ec-8676-10ed1a4a660b)
-
+![Pod deletion output](pod_deletion_output.png)
 
 ## Gotchas and Notes
 

@@ -83,5 +83,5 @@ Go ahead and create this yml file, and apply it with `kubectl apply -f 2_createT
 > Sometimes, you may want to run `watch kubectl get pods` on your frontend to monitor pods that may take a while to complete.
 
 If everything works correctly, after about 15 minutes `kubectl logs pytorch-install` should return something similar to:
-![image](https://github.com/heatherbaier/dist-ml/assets/7882645/67284660-7291-4a3f-a0fa-47f8a4f28a4b)
+![PyTorch installation output](pytorch_install_output.png)
 
