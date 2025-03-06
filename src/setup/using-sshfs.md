@@ -23,7 +23,7 @@ cd mounts
 mkdir sciclone
 ```
 
-Now, use `sshfs` to mount the remote directory.  Here we'll mount our home directory on SciClone (this uses the shorthand `bora` because we're assuming you've already setup your [SSH config file](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html), if not you'll need to use the full `<user>@bora.sciclone.wm.edu`):
+Now, use `sshfs` to mount the remote directory.  Here we'll mount our home directory on SciClone (this uses the shorthand `bora` because we're assuming you've already setup your [SSH config file](configuring-ssh.md), if not you'll need to use the full `<user>@bora.sciclone.wm.edu`):
 
 ```bash
 sshfs bora:/sciclone/home/<your-user-name> ~/mounts/sciclone
@@ -45,7 +45,6 @@ To unmount the drive, you just do
 umount ~/mounts/sciclone
 ```
 
-
 ## Re-connection options
 
 If you restart your computer, it will disconnect this mount and you'll still see your `~/mounts/sciclone` directory but it'll be empty.  It is probably best practice to manually re-mount the drive each time, especially for example, a desktop with a hard-wired connection.  
@@ -58,7 +57,6 @@ Also if you prefer, instead of manually reconnecting on startup every time, ther
 - Create a bash script `mount.sh` with the sshfs command and then configure Linux to run this script on startup ("Startup Applications")
 - Use `systemd` to manage the mount (this is the most robust solution) but also most involved.
 
-
 ## Mounting on Mac
 
 Mac doesn't have native SSHFS support, so we need to use the third-party [`macFUSE`](https://macfuse.github.io/) (formerly OSXFUSE) utility.  You can install it with Homebrew (`brew install macfuse`), or directly from their [website](https://macfuse.github.io/).  (Use the "macFUSE" download, *not* the "SSHFS" download.)  MacFUSE allows you to use non-Mac filesystems, on a Mac --- for example, SSHFS.
@@ -66,8 +64,6 @@ Mac doesn't have native SSHFS support, so we need to use the third-party [`macFU
 Once you've installed macFUSE, you need to also install SSHFS (`brew install sshfs`).  (If you don't have Homebrew, you can [follow these instructions](https://brew.sh/).  It is possible to build/install sshfs without brew but it's much more complicated.)
 
 Now you can use the same commands as Linux (see above), knowing that macFUSE is doing some middle-man work under the hood to let the remote FS play nice with your Mac's.
-
-
 
 ## Mounting on Windows
 

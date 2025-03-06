@@ -8,7 +8,7 @@
 - [These Have not been checked]()
 - [Requesting An Account](setup/request-account.md)
 - [Login & Basic Setup](setup/login-and-basic-setup.md)
-- [Uploading Files](setup/moving-files.md)
+- [Uploading Files](setup/uploading-files/uploading-files.md)
 - [Using the Jump Server and Configuring SSH](setup/configuring-ssh.md)
 - [Mounting a Drive](setup/using-sshfs.md)
 
