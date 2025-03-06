@@ -1,11 +1,4 @@
----
-layout: default
-title: Welcome
----
-
-# Distributed ML @ W\&M
-
-## Welcome aboard!
+# Welcome aboard!
 
 This is a how-to manual for using the [High Performance Computing (HPC)](https://www.wm.edu/offices/it/services/researchcomputing/) resources at William and Mary for [Data Science](https://github.com/D8A-SCIENCE) and distributed ML.  
 

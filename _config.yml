@@ -1,6 +1,0 @@
-title:          Distributed ML at WM
-description:    Manual for using the WM HPC for Data Science
-theme:          jekyll-theme-cayman 
-
-markdown:       kramdown
-highlighter:    rouge
