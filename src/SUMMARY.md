@@ -21,30 +21,32 @@
 
 # Using Python on The HPC
 
-- [Into]()
-- [Jupyter Notebooks]()
-- [Using an IDE (VSCode)]()
-- [Python & Conda in a Job]()
-- [Python & MPI]()
-- [Python & Dask]()
+- [Python & Conda](python-on-hpc/conda-environments.md)
+- [Jupyter Notebooks](python-on-hpc/jupyter/jupyter.md)
+- [Using an IDE (VSCode)](python-on-hpc/using-IDEs-on-hpc.md)
+- [Python & Conda in a Job](python-on-hpc/running-python-within-a-job.md)
+- [Python & MPI](python-on-hpc/launching-parallel-programs-on-the-hpc-using-mpi.md)
+- [Python & Dask](python-on-hpc/dask_intro.md)
 
 # Distributed Sk-Learn
-- [Example Dataset]()
-- [Random Search - Simple]()
-- [Random Search - MPI]()
-- [Random Forest]()
-- [Dask & sklearn]()
+
+- [Example Dataset](distributed-scikit/data.md)
+- [Random Search - Simple](distributed-scikit/randomSearch.md)
+- [Distribution Across Multiple Nodes with sklearn](distributed-scikit/mpi.md)
+- [Random Forest](distributed-scikit/rf.md)
+- [Dask & sklearn](distributed-scikit/dask.md)
 
 # Distributed PyTorch -- Dask
-- [Basics of PyTorch]()
-- [PyTorch & Dask]()
+
+- [Basics of Torch](distributed-pytorch-dask/torchbasics.md)
+- [PyTorch + DASK](distributed-pytorch-dask/torchdist.md)
 
 # Kubernetes
-[Basics of Kubernetes]()
-- [Your First K8s Deployment]()
-- [Using Python on K8s]()
-- [Creating Custom Images]()
-- [Accessing a Pod from a Browser]()
-- [Setting up Torch]()
-- [One Pod Torch with Data]()
-- [Deploying Ollama on K8s]()
+
+- [Introduction to Kubernetes](k8s/intro.md)
+- [Your First K8S Deployment](k8s/yourFirstDeployment.md)
+- [Setting up Python and Conda in K8S](k8s/python_conda.md)
+- [Creating custom images](k8s/creating-an-image.md)
+- [Hosting a website on the cluster](k8s/setting-up-website.md)
+- [Running Torch with Real Data in a Pod](k8s/singlePodTorch.md)
+- [Running Ollama on K8S](k8s/ollama-example.md)

@@ -1,13 +1,16 @@
 # 🐍 Using Python: Modules, Conda, and Virtual Environments
 
-Working with Python on the cluster is similar to how you would use it on a local machine, but with several key differences.  We will focus on using Python via the [**Anaconda ecosystem**](https://docs.anaconda.com/) because it is the sanctioned method on the cluster and it plays better with CUDA-enabled operations.  We will also cover how to setup and use Conda virtual environments --- it is _highly recommended_ that you use Conda environments when running code the HPC, and not "work in base".
+<div class="warning">
+<b>Due to licensing issues Anaconda has been disable on the HPC and this section has not been updated.</b> Use Miniconda or virtualenv instead.
+</div>
 
+Working with Python on the cluster is similar to how you would use it on a local machine, but with several key differences.  We will focus on using Python via the [**Anaconda ecosystem**](https://docs.anaconda.com/) because it is the sanctioned method on the cluster and it plays better with CUDA-enabled operations.  We will also cover how to setup and use Conda virtual environments --- it is _highly recommended_ that you use Conda environments when running code the HPC, and not "work in base".
 
 ## Using Environment Modules
 
 Log onto a SciClone frontend and try to see where Python or Conda are located with the following commands:
 
-```
+```bash
 which python
 which conda
 ```
@@ -18,30 +21,28 @@ The cluster uses **environment modules** to manage software use.  This allows us
 
 To see what modules are currently loaded, type:
 
-```
+```bash
 module list
 ```
 
 You should see a short list of the `modules` resource itself, and the batching system (Slurm currently on all subclusters).  To see what modules are available, type:
 
-```
+```bash
 module avail
 ```
 
 This will show a couple dozen modules, which are available across all subclusters, regardless of frontend, and includes things like Julia, Matlab, Python, Conda, and many others.
 
-
 ## Loading Conda
 
 To load Conda and start using it, we can just do:
-
 
 <!-- ```
 source "/usr/local/anaconda3-2021.05/etc/profile.d/conda.csh"
 module load anaconda3/2021.05
 ``` -->
 
-```
+```bash
 module load anaconda3/2023.09
 ```
 
@@ -49,19 +50,18 @@ where the `anaconda3/2023.09` portion needs to match the actual available module
 
 This will source and load the Anaconda module so it is ready for you to use.  Now if you try the `which conda` command again, you will see something like:
 
-```
+```bash
 $ which conda
 conda:   aliased to source /sciclone/apps/anaconda3-2023.09/etc/profile.d/conda.csh
 ```
 
 You can check what packages are installed (in the base environment, more on this below) with:
 
-```
+```bash
 conda list
 ```
 
 There are dozens installed, so if you are really interested in scouring the list you could do something like `conda list | less`.  This "pipes" the output of `conda list` into the bash function `less`, which lets you go through one page at a time using the spacebar.  When you're done, press `q` to quit and you'll be back on the command prompt.
-
 
 ## Intro to virtual environments
 
@@ -80,7 +80,7 @@ Conda is very similar, but slightly more user friendly.
 
 First, you can list existing venvs with either of the following commands:
 
-```
+```bash
 conda env list
 conda info --envs
 ```
@@ -89,7 +89,7 @@ If this is your first time using it, you will note a single env named `base` tha
 
 Instead, let's create our own venv. Use the following command to create your environment and type `y` when prompted `Proceed ([y]/n)?`
 
-```
+```bash
 conda create -n [ENVNAME]
 ```
 
@@ -99,13 +99,13 @@ Take a look again at your list of environments (`conda env list`) and you will s
 
 Next, activate your new environment by typing:
 
-```
+```bash
 conda activate [ENVNAME]
 ```
 
 Your prompt will change slightly, with the name of the environment in parantheses ahead of the prompt, something like:
 
-```
+```bash
 (env-name) [bora]
 ```
 
@@ -115,7 +115,7 @@ Try peeking at the packages installed in this environment with `conda list`.  Yo
 
 You can now install any packages you need for a program using standard conda install commands, for example:
 
-```
+```bash
 (env-name) [bora] conda install pandas
 ```
 
@@ -125,12 +125,11 @@ and if you want, check `conda list` again to ensure it's installed.
 
 Once you've finished in the venv, make sure to "deactivate" it with
 
-```
+```bash
 (env-name) [bora] conda deactivate
 ```
 
 and you will pop back to your normal shell.
-
 
 ## Using environments with `requirements.txt`
 
@@ -140,19 +139,19 @@ This makes our life very easy.  Assuming we don't need to fret about Python vers
 
 First clone the project into your home directory:
 
-```
+```bash
 git clone <url.git>
 ```
 
 Then create a new venv *just for this project*
 
-```
+```bash
 conda create -n project-env
 ```
 
 Navigate to the base folder of the repo and activate into your environment
 
-```
+```bash
 cd project
 conda activate project-env
 (project-env)
@@ -160,7 +159,7 @@ conda activate project-env
 
 Now install all the packages into your venv based on the requirements.txt with
 
-```
+```bash
 (project-env) conda install --file requirements.txt
 ```
 
@@ -168,4 +167,4 @@ Now install all the packages into your venv based on the requirements.txt with
 
 Now you're ready to run their scripts!  Remember to `conda deactivate` out when you're done.
 
-There are [other ways](https://datumorphism.leima.is/til/programming/python/python-anaconda-install-requirements/) to accomplish this that you may explore, and of course, next you'll want to look up how to *create* a requirements.txt for your own project.
+There are [other ways](https://datumorphism.leima.is/til/programming/python/python-anaconda-install-requirements/) to accomplish this that you may explore, and of course, next you'll want to look up how to _create_ a requirements.txt for your own project.

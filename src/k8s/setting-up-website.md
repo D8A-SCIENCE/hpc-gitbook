@@ -52,10 +52,10 @@ Now we install a proxy switcher, such as [FoxyProxy](https://chromewebstore.goog
 Proxy settings configured in FoxyProxy only affect Chrome, so should not interfere with other traffic on your machine.
 
 1. Configure a SOCKS5 proxy with `HostName: localhost` and `Port: 3000`, or any other port you would like to use.
-   <img src="/hpc-gitbook/assets/images/foxyproxy_config.png" alt="FoxyProxy configuration pane" width="90%">
+   ![FoxyProxy configuration pane](foxyproxy_config.png)
 2. Click Save.
 3. Activate the proxy from the Chrome menubar. At this point Chrome should lose internet access, as the proxy configuration is not connected to a proxy server.
-   <img src="/hpc-gitbook/assets/images/foxyproxy_main.png" alt="FoxyProxy proxy switcher pane" width="90%">
+   ![FoxyProxy proxy switcher pane](foxyproxy_main.png)
 
 ## Accessing the cluster
 

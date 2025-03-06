@@ -8,7 +8,6 @@ This post will cover the latter, how to connect your IDE to the HPC clusters and
 
 We'll first cover how to connect to a front-end, and then how to connect to a specific compute node running an interactive Slurm job.  We'll assume you're familiar with VS Code and have experience using it to code in Python and Jupyter notebooks on a local machine, so we can focus on getting things working remotely --- this is not designed to be a VS Code crash course.
 
-
 ## Connecting to a Remote Server
 
 Connecting to a remote server like bora, gulf, etc is very easy provided we have done the following key prequisite:

@@ -10,17 +10,16 @@ Jupyter notebooks are a popular choice for interactive exploratory work in many 
 
 We'll cover both methods, then do a short section on running tests to make sure they worked and how to monitor resources on the HPC from within Jupyter.
 
-
 ## Using `notebooks.sciclone.wm.edu`
 
 Navigate to [notebooks.sciclone.wm.edu](https://notebooks.sciclone.wm.edu/).  You will see a screen something like this:
 
-<img src="/hpc-gitbook/assets/images/jupyterhub.png" alt="Jupyter Hub" width="90%">
+
+![jupyter hub](jupyterhub.png)
 
 As you can see, this JupyterHub launch page gives you a bunch of different pre-fab notebook + Python environment options --- GPU support, PyTorch, etc.  Go ahead and select a notebook with GPU support (for example, I currently have "Data Science GPU notebook" as an option) and click "Start Notebook".
 
 We'll check the notebook has the resources and packages we want at the end of this post.  
-
 
 ## Port tunneling
 
@@ -72,8 +71,8 @@ and you should see `True`.
 
 We can also check out what resources are available to us, and monitor status, from within the Jupyter environment, by starting a Terminal tab.
 
-<img src="/hpc-gitbook/assets/images/create_a_terminal.png" alt="Terminal tab" width="90%">
+![Terminal tab](create_a_terminal.png)
 
 Now try something like `top` and you will see
 
-<img src="/hpc-gitbook/assets/images/top_in_jupyter.png" alt="top in Jupyter" width="90%">
+![top in Jupyter](top_in_jupyter.png)

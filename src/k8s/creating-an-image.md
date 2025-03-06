@@ -107,7 +107,7 @@ In your Dockerfile, use the simple example from before, and same for `script.py`
 
 Now, we will create a workflow that builds this image whenever we make a change to the `project` directory.  In your `test-repo` repo, click on the **Actions** tab and then the option for Docker Image:
 
-<img src="/hpc-gitbook/assets/images/gh_actions.png" alt="GH Actions" width="90%">
+![GH Actions](gh_actions.png)
 
 This will initiate a YML file, named by default something like `docker-image.yml`, and put it in an auto-created new folder `.github/workflows` in your repo.  Your repo now looks like this:
 
