@@ -4,7 +4,6 @@ So you've launched a job, yay!
 
 Let's look at some ways to look at the status of your job, check activity across the cluster, and delete a job.  
 
-
 ## Slurm: `squeue`
 
 Running `squeue` (think: Slurm queue) from your terminal on a front-end will give you a table of statistics about all of the jobs currently running on that sub-cluster.  The output will look like:
@@ -48,25 +47,19 @@ This command lists:
 
 - **Nodes / Nodelist:** Number of nodes reserved and their number
 
-
 ### Slurm: Deleting a job
 
 You may want to delete a job before its walltime limit.  Find the job ID (using `squeue`) and run `scancel [JOB ID]`.  You should see `Terminated` whcih indicates the job has been successfully deleted.
-
-
 
 ## Torque: `qstat`
 
 For good measure, let's cover the equivalents on Torque.  Running `qstat` from your terminal will give you a table with statistics about all of the jobs currently running on the sub-cluster you are logged into. The output of this command will look like:
 
-<!-- ![](/hpc-gitbook/assets/images/qstat.png) -->
-<img src="/hpc-gitbook/assets/images/qstat.png" width="70%">
+![qstat](qstat.png)
 
 To limit this to a particular username, we can again use the `-u` flag `qstat -u [USERNAME]`.  Or equivalently, the HPC has prepopulated all users' `.bashrc` file with the alias `qsu` for `qstat -u`, so you can just do
 
-<!-- ![](/hpc-gitbook/assets/images/qstatu.png)
-![](/hpc-gitbook/assets/images/qsu.png) -->
-<img src="/hpc-gitbook/assets/images/qsu.png" width="70%">
+![qsu](qsu.png)
 
 What does this table tell us?
 
@@ -82,20 +75,16 @@ What does this table tell us?
 >
 > **Elap Time:** How long the job has been running for. If the job is in the queue and waiting to be launched, this line will look like `-----------`&#x20;
 
-
 ### Torque: Deleting Jobs
 
 If for any reason you decide that you want to cancel a job before it has reach it's walltime limit, find the job ID (using either of the two methods in the previous page) and run `qdel [JOB ID]`
 
-<!-- ![](../.gitbook/assets/qdel.png) -->
-<img src="/hpc-gitbook/assets/images/qdel.png" width="70%">
+![qdel](qdel.png)
 
 You should see `Terminated`, which indicates that the job has been successfully deleted.
-
 
 ### PBSTOP
 
 Torque also had a utility called PBSTOP (a modification of the base TOP command) that gave a very nice overview of activity on the cluster.  We're not aware of an equivalent yet on Slurm, but for historical reference this is what PBSTOP output looked like:
 
-<img src="/hpc-gitbook/assets/images/pbstop.png" alt="PBSTOP" width="90%">
-
+![PBSTOP](pbstop.png)

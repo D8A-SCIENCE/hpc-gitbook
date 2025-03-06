@@ -34,7 +34,7 @@ There are more examples of this on the [HPC's "Running Jobs with Slurm"](https:/
 Lets test this script out.  Go to a test folder in your SciClone home, and create a new script file:
 
 ```bash
-$ touch test-job.sh
+touch test-job.sh
 ```
 
 Then open with your favorite command line text editor (for example `nano`) and copy-paste the 5 lines from above, save and exit.
@@ -66,7 +66,7 @@ For archival purposes, here's the equivalent pattern for doing this in Torque:
 
 In Torque, a job script is just a text file that might look like the following:
 
-```
+```bash
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12
@@ -83,26 +83,26 @@ First login in to Vortex and make sure you are in your home20 directory using th
 
 Next, make a folder called demo and navigate into it using the commands:
 
-```
+```bash
 mkdir demo
 cd demo
 ```
 
 Once you're in your demo directory, make a new file called job.
 
-```
+```bash
 touch job
 ```
 
 Now, open your new job file in an editor in your terminal by running:
 
-```
+```bash
 nano job
 ```
 
 Within the nano editor, paste the code from above:
 
-```
+```bash
 !/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12
@@ -123,12 +123,12 @@ Now, type `qsub job` into your terminal. This will submit the job to the job que
 
 After a couple seconds, type `ls` into your terminal. If you only see your job script, wait a few seconds longer and check again until you see two files that look similar to:
 
-![](</hpc-gitbook/assets/images/lsdemo (1).png>)
+![ls example](lsdemo.png)
 
 The two new files are your job output files. They will have the naming convention `[JOBFILENAME].e[JOBID]` and `[JOBFILENAME].o[JOBID]`. The file with a .e contains a printout of any errors that caused your job to fail. In this case, the file should be empty. Check that it is by running `more job.e9777417.`If nothing prints out, then your job ran successfully!
 
 Next, check the job output file by running `more job.o9777417`
 
-![](/hpc-gitbook/assets/images/morejo.png)
+![output example](morejo.png)
 
 Ignore the Warning line and the line that starts with 'Thus'. The bottom line should say "Hello World!" thanks to our echo statement in the job script we submitted!

@@ -2,12 +2,11 @@
 
 Interactive jobs function as if you were programming regularly from your terminal. We generally launch interactive jobs when we need to move large amounts of data or when we're testing or debugging short bits of code.  We can launch an interactive job in similar ways using Slurm or Torque.
 
-
 ## Slurm
 
 In Slurm, you start interactive sessions with `salloc` (think: "slurm allocate").  Go into a subcluster that has GPUs and try:
 
-```
+```bash
 salloc -N 1 -n 1 -t 30:00 --gpus=1
 ```
 
@@ -19,13 +18,13 @@ After running `salloc`, you will see some feedback from the resource manager ---
 
 Test that you actually got the GPU you requested with a command like:
 
-```
+```bash
 [gu03] nvidia-smi
 ```
 
 which should return something like
 
-```
+```bash
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
@@ -57,12 +56,11 @@ You can run scripts from this node, in the terminal.  A tricky bit emerges when 
 
 When you are done in an interactive job, you can exit by hitting `ctrl + d` or typing `exit`.
 
-
 ## Torque
 
 Torque is now being discontinued but in case that changes, or you happen to be working with a system outside the HPC where this may be useful ... here is an example of a command to create an interactive session in Torque:
 
-```
+```bash
 qsub -I -l nodes=1:vortex:ppn=12,walltime=01:00:00
 ```
 
@@ -77,14 +75,9 @@ Let's break down this line:
 > **nodes=1:vortex:ppn=12:** The formatting of this line must remain the same, however you can modify the number of nodes, sub-cluster and number of processors that you want. The computer will checkout the specified number of nodes and processors for you on the sub-cluster you name.
 >
 > **walltime:** This is the amount of time you want to reserve the resources for. The maximum amount of time you can check-out on Vortex is 180 hours, however you should only checkout out nodes for as long as you think it will take your program to run. If your program exceeds the walltime limit, it will be terminated and all memory will be erased. The format is HH:MM:SS
->
->
 
 If you run the above line from your home directory, you should see something similar to:
 
-![](/hpc-gitbook/assets/images/ijob.png)
+![torque example](ijob.png)
 
-<img src="/hpc-gitbook/assets/images/ijob.png" alt="Torque example" width="90%">
-
-
-On line 11 in the screenshot above, you can see **\[vx01]** as opposed to the **\[vortex]** in line 12. This means that now that you have launched a job, you are no longer running on the main Vortex infrastructure. Instead, you have now checked out 12 processors on Vortex Node 1 and are running your code from there. If the line read instead **\[vx02]**, that would indicate you were on Vortex Node 2.&#x20;.
+On line 11 in the screenshot above, you can see **\[vx01]** as opposed to the **\[vortex]** in line 12. This means that now that you have launched a job, you are no longer running on the main Vortex infrastructure. Instead, you have now checked out 12 processors on Vortex Node 1 and are running your code from there. If the line read instead **\[vx02]**, that would indicate you were on Vortex Node 2.

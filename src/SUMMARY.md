@@ -5,7 +5,7 @@
 ---
 
 # Setting up Your HPC Account
-- [These Have not been checked]()
+
 - [Requesting An Account](setup/request-account.md)
 - [Login & Basic Setup](setup/login-and-basic-setup.md)
 - [Uploading Files](setup/uploading-files/uploading-files.md)
@@ -13,12 +13,14 @@
 - [Mounting a Drive](setup/using-sshfs.md)
 
 # The Batch System
-- [What is a Batch System?]()
-- [Interactive Jobs]()
-- [Non-Interactive Jobs]()
-- [Checking the Status of Jobs]()
+
+- [What is a Batch System?](the-batch-system/what-is-the-batch-system.md)
+- [Interactive Jobs](the-batch-system/interactive-jobs.md)
+- [Non-Interactive Jobs](the-batch-system/non-interactive-jobs.md)
+- [Checking the Status of Jobs](the-batch-system/job-status/checking-the-status-of-your-jobs.md)
 
 # Using Python on The HPC
+
 - [Into]()
 - [Jupyter Notebooks]()
 - [Using an IDE (VSCode)]()
