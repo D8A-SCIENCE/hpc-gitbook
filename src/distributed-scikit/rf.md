@@ -16,7 +16,7 @@ To facilitate this comparison, we have created a bigger version of the student a
 
 First, we'll need to setup our job file. Most things here are similar to what you saw in the Random Search example, but with some key differences.
 
-```
+```bash
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12
@@ -43,7 +43,7 @@ Also important is in the mvp2run, the command -c 1 . What this is telling the sc
 
 ## Python File
 
-```
+```python
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
@@ -102,13 +102,13 @@ Once you've created your files, you can do a qsub , where j is the name of your 
 
 Once run, you should find a new output.out file in your directory. Running a cat output.out, you should see a few things, including:
 
-```
+```log
 Thu Sep 08 2022 13:17:10 EDT: /usr/local/seoul/linux-centos7-piledriver/intel-18.0.5/mvapich2-2.3.1-m2no/bin/mpirun_rsh -rsh -np 1 -hostfile /tmp/mvp2run.hosts.28604  MV2_ENABLE_AFFINITY=1 MV2_SMP_USE_LIMIC2=0 MV2_SMP_USE_CMA=0 /sciclone/home20/dsmillerrunfol/.conda/envs/aml35/bin/python simplePar.py
 ```
 
 This string simply shows what time the job was processed, and the actual command that mvp2run created for you. Until you get to much more complex models, you won't need this for debugging, but it is nice to have!
 
-```
+```bash
 27.136 seconds (1 core)
 8.407 seconds (12 cores)
 ```

@@ -22,7 +22,7 @@ metadata:
 spec:
   containers:
     - ports:
-	  - containerPort: <EXPOSED-PORT>
+   - containerPort: <EXPOSED-PORT>
 ```
 
 ## Setting up a nodeport
@@ -72,19 +72,19 @@ To simplify this command (and logging into the cluster generally), add the follo
 
 ```ssh-config
 Host wm-bastion
-	HostName bastion.wm.edu
-	User <USERNAME>
+ HostName bastion.wm.edu
+ User <USERNAME>
 
 Host bora
-	HostName bora.sciclone.wm.edu
-	User <USERNAME>
-	ProxyJump wm-bastion
+ HostName bora.sciclone.wm.edu
+ User <USERNAME>
+ ProxyJump wm-bastion
 
 Host wm-k8s
-	HostHame cm.geo.sciclone.wm.edu
-	User <USERNAME>
-	ProxyJump bora
-	DynamicForward <EXTERNAL-PORT> # Only set if you want every ssh session to port forward.
+ HostHame cm.geo.sciclone.wm.edu
+ User <USERNAME>
+ ProxyJump bora
+ DynamicForward <EXTERNAL-PORT> # Only set if you want every ssh session to port forward.
 ```
 
 With this config, run

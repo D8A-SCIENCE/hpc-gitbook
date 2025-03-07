@@ -1,7 +1,9 @@
 # Single Pod, Multi-GPU with Torch
+
 Here, we'll be requested 3 GPUs and running a torch classification on CIFAR using them.  Note that this requires all 3 GPUs are physically on the same node, as our resource request for a pod will specify 3 GPUs, and pod resources can't extend beyond your physical computational capacity.  We'll show how to create multiple 1-GPU pods that can exist on any node, and how to fit a model using that distribution strategy, in the next tutorial.
 
-# YAML Resource Request
+## YAML Resource Request
+
 Here, we're going to simply increase the number of GPUs that we request to 3, and allocate more cores to help load data onto the GPUs.  Additionally, we're going to change the script we use for processing to `multiGPU.py`, which will be detailed below.  
 
 ```yaml
@@ -49,6 +51,7 @@ spec:
 ```
 
 Next, we're going to make some small modifications to our python classification code to enable the model to be parallelized across multiple GPUs.  Create this file, save it as multiGPU.py, and then copy it to your persistent volume using `kubcp multiGPU.py dsmillerrunfol/file-passthrough:/kube/home/multiGPU.py`.  You may need to restart your file-passthrough pod to do this.  Your new python file will look like:
+
 ```python
 import torch
 import torch.nn as nn
@@ -127,12 +130,15 @@ print("----------------------------------")
 print("----------------------------------")
 
 ```
+
 With the core new element being:
-```
+
+```python
 if torch.cuda.device_count() > 1:
     print("Using", torch.cuda.device_count(), "GPUs!")
     net = nn.DataParallel(net)
 ```
-This code replicates the model across all GPUs, and then subsets each batch into further mini-batches that get distributed across the GPUs (so, in this example, each of the 3 GPUs processes 1/3 of the batch size of 36, for a per-card batch of 12).  Each GPU solves for it's gradients, and then the master synchs these gradients to update the model, and sends the new weights out to each GPU each batch. 
+
+This code replicates the model across all GPUs, and then subsets each batch into further mini-batches that get distributed across the GPUs (so, in this example, each of the 3 GPUs processes 1/3 of the batch size of 36, for a per-card batch of 12).  Each GPU solves for it's gradients, and then the master synchs these gradients to update the model, and sends the new weights out to each GPU each batch.
 
 Once your multiGPU.py script has been uploaded, you can `kubectl apply -f 4_multiGPUTorch.yml`.  

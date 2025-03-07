@@ -18,6 +18,7 @@ This YAML is actually two manifests, separated by `---`.  (Notice we've removed 
 - Lastly, we setup a `service`.  This is a layer attached to the pod created by the deployment (all in the same namespace), which allows interface between other containers in the namespace and the Ollama pod itself, via a pre-defined dedicated port.
 
 `ollama-gpu.yml`
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -81,16 +82,16 @@ kubectl apply -f ollama-gpu.yml
 
 And then let's go check what we have wrought.  First check on the deployment, you will see:
 
-```
-kubectl get deployments -n my-space
+```bash
+$ kubectl get deployments -n my-space
 NAME     READY   UP-TO-DATE   AVAILABLE   AGE
 ollama   1/1     1            1           32s
 ```
 
 where notice we have to remember to do this within our namespace with the `-n` flag.  Next, the service will show:
 
-```
-kubectl get services -n my-space
+```bash
+$ kubectl get services -n my-space
 NAME     TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 ollama   ClusterIP   10.108.110.54   <none>        80/TCP    3m18s
 ```
@@ -99,14 +100,13 @@ ollama   ClusterIP   10.108.110.54   <none>        80/TCP    3m18s
 
 Lastly, try checking on pods:
 
-```
-kubectl get pods -n my-space
+```bash
+$ kubectl get pods -n my-space
 NAME                      READY   STATUS    RESTARTS   AGE
 ollama-7c87b867c4-bap8r   1/1     Running   0          7m20s
 ```
 
 You will see a pod with the deployment name and then a weird hash-looking string.  This is the first pod spawned by the deployment.  If you delete it with `k delete pod` and type out that exact name with the hash, **the deployment will immediately spawn another one**, because it was written with the "Recreate" strategy.  There are other strategies for deployments --- here's some [more on this topic](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
-
 
 ## Interacting with the pod
 
@@ -115,6 +115,7 @@ We can now do a proof of concept that we can interact with this `ollama` pod fro
 So, let's just create a "curl" pod that can do just that:
 
 `curl-pod.yml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -132,14 +133,14 @@ spec:
 
 Now create it with `kubectl apply -f curl-pod.yml`, wait for it to be fully created, and then hop into it in interactive mode:
 
-```
-kubectl exec -it curl-pod -n my-space -- /bin/sh
+```bash
+$ kubectl exec -it curl-pod -n my-space -- /bin/sh
 ~ $
 ```
 
 Now let's try to check Ollama actually exists over there on that pod our deployment created.  Our service is listening on port 80, so from within our curl pod (which I'll continue denoting with the `~ $` prompt) we can call:
 
-```
+```sh
 ~ $ curl http://ollama:80/
 ```
 
@@ -147,13 +148,12 @@ and we should get the pleasant response `Ollama is running`.  Yay!  (**Note:** i
 
 Let's try checking on the API:
 
-```
+```sh
 ~ $ curl http://ollama:80/api/version
 {"version":"0.3.10"}
 ```
 
 Nice.  So let's do something more interesting and pull an actual model.
-
 
 ## Pull a model and make calls to the API
 
@@ -161,21 +161,18 @@ Recall that Ollama is just a wrapper service --- we don't currently have any act
 
 Still in our curl pod, let's download the smallest Llama 3.1 model (8B parameters).  This takes only a minute or so so we'll set `"stream": false`.  You can check out their [API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md) for all the parameters.
 
-```
+```sh
 ~ $ curl http://ollama:80/api/pull -d '{"name": "llama3.1", "stream": false}'
 ```
 
 And after a minute or so you should see `{"status":"success"}`.  Now we can test the model is working with a prompt/response call:
 
-```
+```sh
 ~ $ curl http://ollama:80/api/generate -d '{"model": "llama3.1", "prompt": "Hi!", "stream": false}'
 ```
 
 which will give something like
 
-```
+```json
 {"model":"llama3.1","created_at":"2024-09-17T01:47:29.158282962Z","response":"It's nice to meet you. Is there something I can help you with, or would you like to chat?","done":true,"done_reason":"stop","context":[128006,882,128007,271,13347,0,128009,128006,78191,128007,271,2181,596,6555,311,3449,499,13,2209,1070,2555,358,649,1520,499,449,11,477,1053,499,1093,311,6369,30],"total_duration":547907910,"load_duration":19225765,"prompt_eval_count":12,"prompt_eval_duration":23206000,"eval_count":24,"eval_duration":463147000}
 ```
-
-
-

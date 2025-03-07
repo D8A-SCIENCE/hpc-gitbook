@@ -13,6 +13,7 @@ But first:
 Let's use our SciClone home directory as NFS-mounted persistent storage in a pod.  We'll take our simple manifest from the previous post and add specification to make this happen:
 
 `vol-pod.yml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -46,28 +47,26 @@ Note the new portions of this YML:
 
 - Volumes.  We need to add the volume mount details in two places:  once at the container level (`volumeMounts`) and once at the spec level (`volumes`).  The container level lines are hooked to the spec-level lines via the "name" attribute, so ensure that matches (in this example, we used "home").  The spec level lines need to include the IP to the server where the filepath resides, in this case the SciClone IP.
 
-Once you modify this YML to match your UID and home directory path, you can go ahead 
+Once you modify this YML to match your UID and home directory path, you can go ahead
 
-```
+```bash
 k apply -f vol-pod.yml
 ```
 
-and once it finishes creating, `exec -it` into it 
+and once it finishes creating, `exec -it` into it
 
-```
+```bash
 k exec -it vol-pod -- /bin/sh
 ```
 
 and go check that your home directory is actually mounted:
 
-```
+```sh
 cd /sciclone/home/your-username
 ls
 ```
 
 You could even try saving a test file with `touch test.txt`, go to a different terminal and login to SciClone, and ensure it showed up.
-
-
 
 ## Persistent Volumes
 
@@ -78,6 +77,7 @@ To access a persistent volume, you must specify both (a) the claimName for your 
 Here's an analogous example to the manifest above, but using a PVC:
 
 `pvc-vol-pod.yml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -101,7 +101,6 @@ spec:
 
 Notice the differences from the NFS-mounted example.  First off all, we don't need to specify a security context because that authorization layer is already captured by the PVC itself.  We also aren't specifying an external IP, because again, the PV is (at least abstractly) within Kubernetes.
 
-
 ## Checking that it worked
 
 Whether you're working on an NFS-mounted drive or PV, let's check the persistence is working.
@@ -110,22 +109,23 @@ We are going to create two files - one in the normal file system (that will be d
 
 (Your command prompt may be slightly different depending on which YML example you're running.)
 
-```
+```sh
 root@claim-example:~# echo "This file is a goner" > ~/doomedFile
 root@claim-example:~# cat ~/doomedFile
 This file is a goner
 ```
 
-Now, let's create a file in our persistent storage.  For the PV example, this is `/kube/home/` --- for NFS, it's `/sciclone/home/your-username`. 
+Now, let's create a file in our persistent storage.  For the PV example, this is `/kube/home/` --- for NFS, it's `/sciclone/home/your-username`.
 
-```
+```sh
 root@claim-example:~# echo "This file will live on" > /your/persistent/path/persistentFile
 root@claim-example:~# cat /your/persistent/path/persistentFile 
 This file will live on
 ```
 
 Now that we have our files, let's destroy the pod and check it worked.  Type `exit` to get out of the pod, then `kubectl delete pod <pod-name>` to delete the pod.  Once it's deleted, create it again, log back in --- if you try to cat the two files we just created, you'll now see:
-```
+
+```sh
 root@claim-example:/# cat ~/doomedFile
 cat: /root/doomedFile: No such file or directory
 root@claim-example:/# cat /your/persistent/path/persistentFile 

@@ -20,7 +20,7 @@ The job script you directly submit will run one job, on a master node. This job 
 
 The master job script is similar to any other script you may have written:
 
-```
+```tcsh
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12

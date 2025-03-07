@@ -14,7 +14,6 @@ We'll cover both methods, then do a short section on running tests to make sure 
 
 Navigate to [notebooks.sciclone.wm.edu](https://notebooks.sciclone.wm.edu/).  You will see a screen something like this:
 
-
 ![jupyter hub](jupyterhub.png)
 
 As you can see, this JupyterHub launch page gives you a bunch of different pre-fab notebook + Python environment options --- GPU support, PyTorch, etc.  Go ahead and select a notebook with GPU support (for example, I currently have "Data Science GPU notebook" as an option) and click "Start Notebook".
@@ -33,39 +32,39 @@ If you are unsatisfied with the control over resources and/or packages the Jupyt
 
 So far our terminal looks something like this:
 
-```bash
-[bora] salloc -N 1 -n 4 -t 1:00:00 --gpus=1
-salloc: Granted job allocation 12345
-salloc: Nodes bo01 are ready for job
+    ```bash
+    [bora] salloc -N 1 -n 4 -t 1:00:00 --gpus=1
+    salloc: Granted job allocation 12345
+    salloc: Nodes bo01 are ready for job
 
-[bo01] module load anaconda3/2023.09
-[bo01] conda activate my-env
-(my-env) [vo03] jupyter notebook --no-browser --ip=\*
-[C 11:38:56.480 NotebookApp] ...
+    [bo01] module load anaconda3/2023.09
+    [bo01] conda activate my-env
+    (my-env) [vo03] jupyter notebook --no-browser --ip=\*
+    [C 11:38:56.480 NotebookApp] ...
 
     Copy/paste this URL into your browser when you
     connect for the first time, to login with a token:
-        http://localhost:8888/?token=39ff...26fe
-```
+    http://localhost:8888/?token=39ff...26fe
+    ```
+
 4. Leave this kernel running.  We will now forward this port (8888) on the bora subcluster to our local port 8888.  This is called port tunneling, since it's like our connected ports create a tunnel of information flow from remote to local.  To do this, in a new terminal session on your local computer, run
 
-```bash
-ssh -NL 8888:bo01:8888 user@bora.sciclone.wm.edu
-```
+    ```bash
+    ssh -NL 8888:bo01:8888 user@bora.sciclone.wm.edu
+    ```
 
 You can always learn more about SSH commands on the [man](https://linuxcommand.org/lc3_man_pages/ssh1.html) page, but in short this new `-L` flag binds `local_socket:host:hostport` on the remote machine specified.  The `-N` flag tells SSH not to execute any additional commands, since we're just doing a port forward.
 
 5. Open a browser and copy-paste the URL for the Jupyter kernel.  (Alternatively, manually type `localhost:8888` and then manually authenticate if necessary.)  A Jupyter landing page will open up to your home directory on SciClone.
 
-
 ## Running tests
 
 Once you have a notebook running, let's run a test to make sure we actually have the resources and packages we think we do.  Let's just do the simple:
 
-```python
-import torch
-torch.cuda_is_available()
-```
+    ```python
+    import torch
+    torch.cuda_is_available()
+    ```
 
 and you should see `True`.
 

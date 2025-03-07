@@ -22,7 +22,6 @@ Once it's connected, you can go to the Explorer tab and click Open Folder, or us
 
 **Note:** VS Code will re-install several of your extensions *on the remote host*.  Generally speaking, extensions that affect UI (like themes or snippets) will remain only on your local, while extensions that affect development, compiling, server interaction, will be installed on remote.  This is to provide a more seamless experience and allow you to treat the remote machine as a separate entity.  *A good practice* is to periodically check your extensions while on the remote to ensure they're up-to-date.
 
-
 ## Using Jupyter notebooks in VS Code
 
 We'd now like to open a Jupyter notebook in VS Code.  This is also easy provided we have done the following key prerequisite:
@@ -33,7 +32,6 @@ As an additional note, **ensure that any environment you want to run Jupyter not
 
 Given these prereqs, try opening a Jupyter notebook from your SciClone home directory in VS Code.  (We assume you already have the standard VS Code extensions for Jupyter installed.)  In the top right, you will see "Select Kernel".  Click this, and it will open up a list of environments that VS Code auto-detects on the remote machine (just like it does when you're working locally).  Since you already have several setup via conda, pick one from this list and test that it works.
 
-
 ## Editing and running Python scripts in VS Code
 
 We can of course edit Python scripts easily in VS Code, and we can run those scripts by returning to the command line in Terminal or similar app, remoting to the server, activating a Conda environment, and running the script.
@@ -43,7 +41,6 @@ We can of course edit Python scripts easily in VS Code, and we can run those scr
 **Running.**  Note that instead of opening a separate command line session, we can do code execution in VS Code also.  You can open a new Terminal within VS Code with Terminal menu -> New Terminal, or the keyboard shortcut (Windows/Linux) Ctrl-Shift-`, or if you'd like it to open to the side, the Command Palette command "Terminal: Create a New Terminal to the Side."  Go ahead and do this and notice you'll get a command prompt on the remote machine.  
 
 (Note that you do still need to do `module load anacondaXXX` and `conda activate <env>`.)
-
 
 ## Connecting to a compute node
 
@@ -70,7 +67,7 @@ authentication stuff
 
 Great!  What this means, is that we can treat the compute node like we've been treating front-ends, as a remote server.  To streamline this and set us up for VS Code, add the following to your SSH config file:
 
-```
+```ssh-config
 Host gu03
   HostName gu03
   User <your-username>
@@ -92,6 +89,4 @@ torch.cuda_is_available()
 
 And you'll see the confirmation `True`.
 
-
 To close a remote session on VS Code, you can use File -> Close remote connection or just close the window.
-

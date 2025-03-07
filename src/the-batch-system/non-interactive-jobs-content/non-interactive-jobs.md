@@ -1,6 +1,6 @@
 # Non-Interactive Jobs
 
-An interactive job allows you to *interact* with the compute node -- for example, on the command line, via a Jupyter notebook, etc.  They are useful for cases where we're in short, iterative loops of development like exploring data or beginning to write a script for something.  However, they are not conducive to running jobs that take a long time --- you would need to either keep the terminal/notebook open, or use something like tmux, but still you are tying up a command line for no reason. 
+An interactive job allows you to *interact* with the compute node -- for example, on the command line, via a Jupyter notebook, etc.  They are useful for cases where we're in short, iterative loops of development like exploring data or beginning to write a script for something.  However, they are not conducive to running jobs that take a long time --- you would need to either keep the terminal/notebook open, or use something like tmux, but still you are tying up a command line for no reason.
 
 A *non*-interactive job is designed for running long, resource-intensive work that you don't need to interact with or monitor.  As a result, they will end up being the more common way you use the HPC.  
 
@@ -60,7 +60,6 @@ That's it!  Now we just need to scale this idea up:  instead of 1 core, let's re
 That's all you need to run non-interactive scripts in Slurm.  
 
 For archival purposes, here's the equivalent pattern for doing this in Torque:
-
 
 ## Torque (Archive)
 

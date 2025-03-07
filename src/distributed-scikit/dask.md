@@ -12,7 +12,7 @@ One advantage of Dask is that it has inbuilt capabilities that allow it to play 
 
 The job script only launches a single node - a master node. This will then spawn other processes. You do _not_ specify the total resources you want here - i.e., you only want this to ever have one node.
 
-```
+```bash
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=1:vortex:ppn=12

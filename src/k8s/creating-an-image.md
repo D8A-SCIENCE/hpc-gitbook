@@ -6,10 +6,9 @@ So far, we have been using images available on [Docker Hub](https://hub.docker.c
 
 But in the event we need more, we have options for expanding beyond this set.  Here are two ways to create a *custom* image:
 
-- **Build locally and push to Docker Hub.**  This is the most straightforward way to build an image. However, it does require you to install software on your personal machine, and it is of course not conducive to collaborative projects or replicating results. 
+- **Build locally and push to Docker Hub.**  This is the most straightforward way to build an image. However, it does require you to install software on your personal machine, and it is of course not conducive to collaborative projects or replicating results.
 
 - **Build using Github Actions.**  This method has a little steeper learning curve, but once you have a few working examples it is not intimidating.  It has the benefit of not requiring you to work locally, and of being inherently collaborative through a git-style workflow.
-
 
 ## Example Dockerfile
 
@@ -53,7 +52,6 @@ We chose this as an example because it is simple, demonstrates that Pods are con
 
 We'll refer back to these files in both example ways to build a custom image.
 
-
 ## Option 1: Build a custom image locally
 
 To build an image locally and push to Docker Hub, we will first need:
@@ -83,7 +81,6 @@ podman push docker.io/your-dockerhub-username/test-image:latest
 
 Success!  You can check your image is on the Docker Hub container registry by navigating to your username --- your image should be there.
 
-
 ## Option 2: Build using Github Actions
 
 You may have noticed one of the tabs on a Github repository is "Actions".  This is a powerful [suite of tools](https://github.com/marketplace?type=actions) to automate your workflows and gets us toe-deep into the realm of CI/CD (continuous integration/continuous development).  Basically, you can setup an event (like a git commit) to trigger an action --- say, do a Linter code check, or label pull requests, etc.  You have something like 2,000 minutes worth of action "time" on Github's hosted services, per month, which is more than enough.
@@ -96,7 +93,7 @@ First, create a new test repo in your Github account, called `test-repo`.
 
 Now create a directory called `project`, and in it create two files: a `Dockerfile` and a script called `script.py`.  So your repo looks like this:
 
-```
+```tree
 /test-repo
   /project
     Dockerfile
@@ -111,7 +108,7 @@ Now, we will create a workflow that builds this image whenever we make a change 
 
 This will initiate a YML file, named by default something like `docker-image.yml`, and put it in an auto-created new folder `.github/workflows` in your repo.  Your repo now looks like this:
 
-```
+```tree
 test-repo/
   .github/workflows/
     docker-image.yml
@@ -123,6 +120,7 @@ test-repo/
 Modify the provided boilerplate for this new YML to the following:
 
 `docker-image.yml`
+
 ```yml
 name: Project Image Build
 run-name: Build Project Image
@@ -176,7 +174,6 @@ jobs:
 
 Now, commit the changes, and click on Actions again to check on the build's progress.  You can also view the step-by-step logs to debug, by clicking on the workflow run and then on the one job `build_and_push` itself.  Once it's queued, executed, and completed, the action will show a green check icon and you are done! --- Congratulations, your image is now available publicly on `ghcr.io`.
 
-
 ## Testing the image
 
 Now that our image is on a cloud-based container registry, either Docker Hub or GHCR, we want to make sure we can pull it into our Kubernetes cluster.
@@ -218,7 +215,6 @@ Last event: PushEvent | lonelilbot/musixmatch-token
 and of course your logged last event will be different, this is pulling from the Github live timeline.
 
 Voila!  Now you know how to create a custom image two ways.
-
 
 ## Coda: workflow on K8S vs. Slurm
 

@@ -20,7 +20,7 @@ For this example, we'll take the simplest road which is to have the same python 
 
 First, we'll have our python file:
 
-```
+```python
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -68,7 +68,7 @@ f.close()
 
 And, second, our job file:
 
-```
+```bash
 #!/bin/tcsh
 #PBS -N demojob
 #PBS -l nodes=2:vortex:ppn=12

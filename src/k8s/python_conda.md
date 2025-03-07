@@ -10,7 +10,6 @@ We have several different options to work with Python on K8S.
 
 - Create a custom image that has exactly the base image, Python version, packages, and any other software/drivers you need.  **This is the preferred option** in most cases, and we'll cover in a separate post ("Creating custom images").
 
-
 ## Using an off-the-shelf image with Python
 
 The easiest option in many cases will be to find an existing image on one of the whitelisted image repositories (Docker Hub is the current CM default) that has what you need.  Then just create a pod with this image, attach it to your NFS drive for data/scripts, and off you go.
@@ -18,6 +17,7 @@ The easiest option in many cases will be to find an existing image on one of the
 Here's an example manifest:
 
 `testPythonPod.yml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -51,7 +51,7 @@ Let's create this pod and enter it in interactive mode (`kubectl create -f testP
 
 Let's check we have Python, where it lives, and which version we have:
 
-```
+```bash
 123456@test-python-pod:/$ which python
 /usr/local/bin/python
 123456@test-python-pod:/$ python -V
@@ -60,7 +60,7 @@ Python 3.11.10
 
 Perfect!  Let's check what packages this image with:
 
-```
+```bash
 123456@test-python-pod:/$ pip list
 WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
 Package    Version
@@ -75,7 +75,6 @@ Pretty plain.  We can try to install a package, like `pip install requests`, but
 So, if you can find a Python image that fits the bill (and there are many!  For [`pytorch`](https://hub.docker.com/r/pytorch/pytorch), for [`conda`](https://hub.docker.com/r/conda/miniconda3/), and many others), then you'll need to pursue another option.
 
 Next we'll discuss an option using a PV.  If you don't have a PV or don't wanna, your next option is to create your own custom image.
-
 
 ## Installing Conda in our Persistent Directory
 
@@ -147,11 +146,12 @@ Go ahead and deploy this yml file via `kubectl apply -f 1_installConda.yml`.  On
 > Because we do not have a sleep command in this script, when it is done the `kubectl get pods` will show that the pod has completed:
 ![Conda installation complete](conda_install_complete.png)
 
-# Exploring persistence with Conda
+## Exploring persistence with Conda
 
 Now that conda is installed in our persistent directory, we can use it in any pod we want.  You can do this interactively, or through a dedicated pod. We'll cover the dedicated pod approach in the next tutorial, but here we'll show how you can do it interactively.
 
 First, create a simple pod that we can log in to that has our persistent volume attached to it, and adds the conda path to our global path:
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -181,25 +181,31 @@ spec:
         - |
           sleep infinity
 ```
+
 Once that file is created, run `kubectl apply -f interactiveCondaPod.yml` to deploy our pod.  Once it's up and running, hop into an interactive shell with `kubectl exec -it interactive-conda -- /bin/bash` .  In order to use conda interactively, we must first tell the shell where it is located.  To do this, simply type these two lines into your shell.  Note this has to be done any time you open a new shell.
-```
+
+```bash
 export MINICONDA_PATH="/kube/home/.envs/conda"
 export PATH="$MINICONDA_PATH/bin:$PATH"
 ```
+
 After you export these paths, you can now type "conda", and you will now see the usual conda help documentation.  Let's go ahead and create a very simple python environment that has pandas installed:
-```
+
+```bash
 conda create -n pandasEx python==3.10
 source activate pandasEx
 conda install pandas
 ```
+
 Note that you will frequently need to use the `source activate` technique in kubernetes pods due to system restrictions on rights, but depending on your image `conda activate` may also sometimes work.  Once you have pandas installed, double check it's working by:
-```
-python
+
+```python
 import pandas
 ```
 
 Finally, to illustrate persistence, log out of the node and delete it using `kubectl delete pod interactive-conda`.  Now, let's recreate it and confirm conda is still working:
-```
+
+```bash
 kubectl apply -f interactiveCondaPod.yml
 kubectl exec -it interactive-conda -- /bin/bash
 export MINICONDA_PATH="/kube/home/.envs/conda"

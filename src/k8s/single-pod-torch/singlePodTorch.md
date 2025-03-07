@@ -1,8 +1,10 @@
 # Running Torch with Real Data in a Pod
+
 Now that we have torch installed in a persistent conda environment, we want to illustrate how to copy files from a local machine (i.e., the frontend) directly into our persistent volume.  You can use this to transfer data from anywhere you can mount on your local frontend up into the K8S environment.  We'll start with a simple python script.
 
 First, we need to deploy a pod that has access to the persistent volume we want to upload something to.  A simple example would be:
-```
+
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -28,6 +30,7 @@ spec:
           echo "Sleeping indefinitely..."
           sleep infinity
 ```
+
 This example pod has access to our persistent volume, and doesn't really do much else.  Go ahead and deploy it with `kubectl apply -f persistentVolumeUpload.yml`.
 
 While that container is created, go ahead and create a python file named `gpu.py` by copying the below.  Create it on the frontend - i.e., cm, not within the pod. This file downloads an image dataset (CIFAR10) into the directory /kube/data, and then runs a few epochs to classify it using a very small convolutinal net:
@@ -104,19 +107,24 @@ for device in devs:
 ```
 
 Once you've created the python file, confirm that your new file-passthrough pod is up and running with `kubectl get pods`.  If it's running, you can now copy the GPU script into your persistent volume.  To do so, you can run:
-```
+
+```bash
 kubectl cp gpu.py dsmillerrunfol/file-passthrough:/kube/home/gpu.py
 ```
 
 Once you run that command, we can run a command against the file-passthrough pod to make sure it copied correctly:
-```
+
+```bash
 kubectl exec -it file-passthrough -- ls -la /kube/home
 ```
+
 If succesful, you should see something like this, including the new gpu.py file:
 ![File listing output](file_listing_output.png)
 
-# Running the python file on GPUs
+## Running the python file on GPUs
+
 Once your file is copied over, you can shutdown the file-passthrough pod and launch the GPU pod that will actually process the data.  For now, we'll only request a single GPU in our pod, and 2 CPUs to help with batching:
+
 ```yaml
 apiVersion: v1
 kind: Pod

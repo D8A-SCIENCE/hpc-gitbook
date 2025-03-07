@@ -1,10 +1,13 @@
 # Setting up Torch
+
 Here, we'll install Torch into a conda environment, but we'll do it using a pod dedicated to the install.  Unlike in the previous example, we won't be accessing conda interactively.
 
 ## Installing Conda Packages with a Dedicated Pod
+
 In order to install a conda package with a dedicated pod, we'll need to do all of the usual installation steps in an automated fashion.  This can be a fantastic way to setup your environments, as it allows you to quicky construct / deconstruct initial environments and test that they worked in a single script.  Note this script took about 15 minutes to run in testing.
 
 For this example, we'll use the following yml file:
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -73,7 +76,9 @@ spec:
 
 
 ```
+
 Notably:
+
 - We are requesting a GPU.  This is so we can test that python can actually detect and load the GPUs for processing.
 - In our script, we are installing the appropriate version of pytorch-cuda (12.1) for the NVIDIA drivers available in our base image.
 - Finally, we have some short diagnostic code that loads torch within python and confirms it can detect GPUs.
@@ -84,4 +89,3 @@ Go ahead and create this yml file, and apply it with `kubectl apply -f 2_createT
 
 If everything works correctly, after about 15 minutes `kubectl logs pytorch-install` should return something similar to:
 ![PyTorch installation output](pytorch_install_output.png)
-

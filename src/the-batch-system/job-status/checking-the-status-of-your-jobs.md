@@ -1,6 +1,6 @@
 # Checking the status of your jobs
 
-So you've launched a job, yay! 
+So you've launched a job, yay!
 
 Let's look at some ways to look at the status of your job, check activity across the cluster, and delete a job.  
 

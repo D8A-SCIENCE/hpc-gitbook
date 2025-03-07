@@ -4,14 +4,13 @@ Using the clusters from a personal laptop not on the WM network requires you to 
 
 In this section, we'll summarize how to do this step, and then how to make our SSH lives easier by using SSH keys and setting up `~/.ssh/config`.
 
-
 ## Using the Jump Server (bastion)
 
-WM isolates its clusters on an internal private network and controls outside access using a "bastion" host, which acts as a sort of gatekeeper between the outside world and the internal school network.  (The term *bastion* originally referred to a critical part of a fortification.) 
+WM isolates its clusters on an internal private network and controls outside access using a "bastion" host, which acts as a sort of gatekeeper between the outside world and the internal school network.  (The term *bastion* originally referred to a critical part of a fortification.)
 
 So broadly, to access a server front-end like `vortex` from a personal laptop and/or off-campus, you need to:
 
-```
+```bash
 $ ssh user@bastion.wm.edu
 <authentication>
 [bastion] $ ssh user@vortex.sciclone.wm.edu
@@ -21,7 +20,7 @@ $ ssh user@bastion.wm.edu
 
 You can also use ssh's `-J` flag (for "jump") and do this all in one command:
 
-```
+```bash
 ssh -J user@bastion.wm.edu user@vortex.sciclone.wm.edu
 <lots of authentication>
 [vortex] $ <do stuff>
@@ -31,14 +30,13 @@ This process is summarized on the HPC page ["Logging in to HPC"](https://www.wm.
 
 From a personal laptop, go ahead and try to access an HPC subcluster using SSH and the bastion jump server.  (Have your phone ready for the Duo push verification!)
 
-
 ## Configuring SSH keys on Bastion
 
 This 2FA with Duo push is tedious and finnicky.  Thankfully, a better way exists, using SSH-generated public/private keys we can keep stored locally and remote.  (This configuration process is described in detail [here](https://code.wm.edu/IT/bastion-host-instructions) and [here](https://wiki.osuosl.org/howtos/ssh_key_tutorial.html) but we'll summarize.)
 
 First, we need to generate an [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) public/private key pair using SSH's built-in `ssh-keygen` command.  In your `~/.ssh` folder, run:
 
-```
+```bash
 ssh-keygen -t rsa
 ```
 
@@ -50,14 +48,13 @@ To push a public key to a server, generally speaking you can push directly to th
 
 To add your SSH keys to code.wm.edu, visit the [SSH Keys settings](https://code.wm.edu/-/profile/keys) page in your user settings and paste your public key in the key field, give the key a suitable title, and click the add key button. Please make sure you paste your public key (e.g. `wmhpc.pub`) and not your private key! Once your public key is available on `code.wm.edu`, the bastion host should find it when you log in, enabling passwordless authentication.
 
-Once you've upload your public key to Gitlab (code.wm.edu), try the `ssh -J` command again from before.  It should bypass the 2FA authentication for bastion and jump you directly to the subcluster. 
-
+Once you've upload your public key to Gitlab (code.wm.edu), try the `ssh -J` command again from before.  It should bypass the 2FA authentication for bastion and jump you directly to the subcluster.
 
 ## Setting up `.ssh/config`
 
 We can even further streamline this process by doing some basic configuration of our `config` file.  Navigate to your personal laptop's `~/.ssh` directory and create/open a file called `config`.  Then add the following configurations:
 
-```
+```ssh-config
 Host bastion
   HostName bastion.wm.edu
   IdentityFile ~/.ssh/wmhpc
@@ -73,30 +70,29 @@ The first set of instructions tells SSH that when it sees `bastion`, to replace 
 
 The second set of instructions tells SSH that when it sees `vortex`, to do some similar replacements, **and** use the proxy server aliased as `bastion` which it now knows is `bastion.wm.edu`.  So to access `vortex`, without even first going on bastion, you can just type `ssh vortex` (try it!).
 
-
 ## Setting up SSH keys for other servers
 
 For bastion, once we uploaded our public key to Gitlab and pointed our config at the associated private key, we avoided any manual authentication with SSH.  
 
 We can mirror this with other servers, but instead of pushing to Gitlab, we just push to the server's `authorized_keys` file which lives in our home directory on that server.  There's even an SSH command to accomplish this:
 
-```
+```bash
 ssh-copy-id -i ~/.ssh/<public_key_file> <user>@<remote_machine>
 ```
 
 so in our case, since we've already done some work in the `config` file, this might look like:
 
-```
+```bash
 ssh-copy-id -i ~/.ssh/hmwpc.pub vortex
 ```
 
 Once you've pushed the public key to the server, add the appropriate `IdentityFile` line to your config file, and then try logging in again to the server with the very simple `ssh vortex`.
 
-Voila!  Repeat as necessary for other servers. 
+Voila!  Repeat as necessary for other servers.
 
 Note: our `config` file example earlier is very explicit, for clarity, but there are ways to reduce the repetitiveness, for example you can specify a config-wide user with:
 
-```
+```ssh-config
 Host *
   User <your username>
 ```

@@ -6,7 +6,7 @@ This guide provides a basic, single-node single-core implementation of a Torch s
 
 ## Example Data
 
-Our example dataset is going to be a satellite dataset from UC Merced. You can download it from: https://geolab.wm.edu/assets/static\_files/mercerImages.zip
+Our example dataset is going to be a satellite dataset from UC Merced. You can download it from: [https://geolab.wm.edu/assets/static\_files/mercerImages.zip](https://geolab.wm.edu/assets/static\_files/mercerImages.zip).
 
 Here is some quick python starter code you can use to grab and extract the data:
 

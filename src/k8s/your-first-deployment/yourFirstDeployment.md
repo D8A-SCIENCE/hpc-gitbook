@@ -2,7 +2,6 @@
 
 In Kubernetes, there are a number of different core object types that we can use to construct a framework for a project: for example so far we've heard the terms `Pod`, `Job`, `Deployment`, `Service`.  In this post, we'll explore using a `Pod`, which will allow us to quickstart operations on K8S that mirror things we were probably trying to do using Slurm.
 
-
 ## What is a Pod?
 
 An aside: in Kubernetes, you will often hear submissons called "deployments", reflecting the long history of kubernetes as a dynamic scheduler for website resources.  However, there is also a specific Kubernetes object called a `Deployment` which has specific properties and behavior, so we'll try to avoid using the term too loosely.  You can choose to deploy multiple things - for example, here we'll be deploying a single Pod, later we'll learn to deploy an automatically spawning "replica set" of pods, etc.  
@@ -27,18 +26,18 @@ You can choose the image you want from a cloud-based host like [Docker Hub](http
 
 Just like any other system, once you've checked out your compute resources, you then need to specify the actual code you want to run.  This isn't all that different from logging into a computer and typing, for example, "python myscript.py" to execute a program.
 
-
 ## Define your First Kubernetes Pod
 
 To do this, first you'll need to log in to Kubernetes.  This requires special permission --- assuming you have it, you can access the Kubernetes frontend by jumping from any on-campus server (e.g. bora, gulf, or even bastion) to the K8S frontend `cm.geo.sciclone.wm.edu`.  Specifically, `ssh <your_username>@bora.sciclone.wm.edu` and then from within bora, `ssh <your_username>@cm.geo.sciclone.wm.edu`.  
 
-Once you're logged in, you'll be in your Kubernetes home directory (/home/<your_username>).  **Note: Your K8S home directory is _not the same_ as your SciClone home directory, and they are not symlinked or other connected.**  
+Once you're logged in, you'll be in your Kubernetes home directory (/home/<your_username>).  **Note: Your K8S home directory is *not the same* as your SciClone home directory, and they are not symlinked or other connected.**  
 
 In your home directory, you can create manifest (typically using the `.YML` or `YAML` format, pronounced "yammel", although it is possible to use `JSON`) to submit to the K8S cluster.
 
 Let's go ahead and create our first manifest - a *yaml* which defines what we want to do.  In this example, we'll request a single pod with one CPU, and then walk through some basic commands and how to observe what's happening in the Pod.  Using nano or vim, create a file with the following code:
 
 `myFirstPod.yml`
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -110,14 +109,13 @@ Which will show you the status of all of your running pods.  You should see some
 
 While you're waiting for it to fully create (you want "Running") you can use a command like
 
-```
+```bash
 kubectl get pod resource-info-pod --watch
 ```
 
 which will update the status automatically when it changes.  Just `Ctrl+C` to exit back to the command prompt.
 
 You can also try `kubectl describe pod resource-info-pod` to see more detailed information --- this is often helpful when debugging.
-
 
 ## Reading the outputs from your Pod
 
@@ -133,12 +131,11 @@ You will see an output similar to this:
 
 > Note that logs are not persistent, and are deleted when the pod is deleted.
 
-
 ## Logging in to your Pod
 
 You can enter any pod in *interactive mode*.  This is useful to debug a running process, install software, or just poke around.  Note that your pod has to be running for this to work - the sleep infinity at the end of the pod is what allows this to happen in this example, which will keep the pod alive until it's walltime (defined in activeDeadlineSeconds) arrives - 30 minutes in this example.  To step into the pod in interactive mode:
 
-```
+```bash
 kubectl exec -it resource-info-pod -- /bin/bash
 ```
 
@@ -159,9 +156,8 @@ This will output the base image the pod is using, which in this example is:
 Once you're done, you can type "exit".
 
 > As you type "kubectl" a lot, you may want to bind it to something shorter.  To do so, go into your Kubernetes home directory and open `~/.bashrc`.  If you want to bind "kubectl" to just "k", you can add the line `alias k='kubectl'` to that file.  Once you save it and restart your shell, you can replace "kubectl" with just "k" from that moment onward.  For example, my own .bashrc looks like:
-> 
+>
 > ![Bashrc configuration](bashrc_config.png)
-
 
 ## Deleting your Pod
 
@@ -169,7 +165,7 @@ If you do not delete your pod, it will exist until all commands have run or the 
 
 To manually delete a pod, you can always do so by typing:
 
-```
+```bash
 kubectl delete pod <name-of-pod>
 ```
 

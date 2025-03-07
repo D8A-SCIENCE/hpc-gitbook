@@ -8,10 +8,9 @@ Let's first try to understand a very high-level idea of how Kubernetes works, th
 
 This idea of *containerization* may seem familier because it is so fundamental we see it manifest in other places:  Virtual Machines (VMs) are a very similar idea to the K8S/Docker idea of containers, with a key  difference being VMs include a kernel, which is one layer deeper than containers and makes containers lighter weight.  You are familiar with Python virtual environments --- there is even some rough analogy there: in a venv we specify our base Python install, in a container we specify our base OS; in a venv we then install packages on top of that base, in a container we install programs/scripts/etc; we use venvs because they are contained, safe, and replicable, and we use containers for the same reasons.
 
-As a quick summary, in Kubernetes we create *containers* built on *images* that are associated with and running on certain requested hardware resources on the cluster.  A container is run inside what's termed a *pod*, and we create this entire setup using a file called a *manifest* (a `.YML` file).  We can create the images themselves using tools like podman or docker.  We will later introduce other concepts within this framework, like *deployments* and *services* and *namespaces*. 
+As a quick summary, in Kubernetes we create *containers* built on *images* that are associated with and running on certain requested hardware resources on the cluster.  A container is run inside what's termed a *pod*, and we create this entire setup using a file called a *manifest* (a `.YML` file).  We can create the images themselves using tools like podman or docker.  We will later introduce other concepts within this framework, like *deployments* and *services* and *namespaces*.
 
 But for now, let's understand how K8S differs from the batch system we're familiar with.  We'll cover two ways: **resource management** and **containerization**.
-
 
 ## Differences between K8S and Batch systems
 
@@ -19,7 +18,7 @@ But for now, let's understand how K8S differs from the batch system we're famili
 
 In our batch systems, all nodes within a cluster are identical.  In our K8S clusters, you have mixed architectures (i.e., one node may have 0 GPUs, another may have 12).  This has implications for how resources are requested.  In our Batch system, if you wanted to check out a node with 12 cores and 128GB of memory, you could look up what node types have the memory you need and then explicitly specify what cores you want, with a Slurm command like ```salloc -N 1 -n 1 -t 30:00 --gpus=1``` or batch script like
 
-```
+```tcsh
 #!/bin/tcsh
 #SBATCH --job-name=serial 
 #SBATCH -N 1 -n1
@@ -29,6 +28,7 @@ In our batch systems, all nodes within a cluster are identical.  In our K8S clus
 In Kubernetes, you don't specify the explicit node or node type you want - instead you request resources, and the K8S scheduler automatically identifies the optimal node for you to run on.  A resource request looks something like:
 
 `(excerpt)`
+
 ```yaml
 containers:
   - name: pytorch-setup-container
@@ -48,7 +48,6 @@ Practically, this means you don't have to know much about the underlying archite
 In our the batch system, when you check out a series of cores, you are sharing some types of resources (i.e. memory) on an node.  Say, for example, you check out 6 cores on a node that has a total of 12, and then another user checks out the other 6.  Because our batch system doesn't have the ability to segment memory utilization, both users are now sharing the memory, and can crash one-anothers jobs if they use all of the memory on the node.  Because of that, we frequently suggest users check out all cores on a node.
 
 K8S isolates your resources into a special construct called a "Pod".  Once a Pod is created on a node, it is allocated exactly the resources requested, and is guaranteed access to those resources, irrespective of what other user pods may be running on the node.  
-
 
 ### Containers and Research Replication
 
@@ -73,5 +72,3 @@ command:
 ```
 
 This contrasts dramatically to our Batch system, in which the operating system is prescribed by our HPC team, and any binaries you need installed either need to be compiled on a node, or installed by the HPC team.  In containers, you have considerable control over the types of system-level binaries you may have access to.
-
-

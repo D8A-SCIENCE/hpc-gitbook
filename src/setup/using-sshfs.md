@@ -4,7 +4,6 @@ You may find it convenient to "mount" a remote drive (like your `/sciclone/home/
 
 Let's learn how to do this.  It is easy on Linux, and fairly easy on Mac and Windows.  Instructions for Windows are not included here (if you have done it, [send a PR to this repo](https://github.com/D8A-SCIENCE/hpc-gitbook) and we'll add it!)
 
-
 ## Mounting on Linux
 
 For Linux, we'll use the [`sshfs` utility](https://en.wikipedia.org/wiki/SSHFS) ("SSH Filesystem").  First, make sure it's installed:

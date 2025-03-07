@@ -67,10 +67,9 @@ There are dozens installed, so if you are really interested in scouring the list
 
 If you are unfamiliar with virtual environments, they may seem intimidating at first.  Overcome this feeling!  It is essential you get comfortable with working in venvs: to keep a clean footprint on the subcluster, to allow you to work with multiple complex projects, to enable collaboration.  (Also, there is some conceptual similarity between venvs and containerization, which we'll explore later in the Kubernetes section, so getting comfortable with venvs will help jumpstart your comfort level with K8S.)
 
-The idea of a virtual environment (venv) is to create a containerized space where you can install specific packages needed for a project, that does not affect other venvs.  So, for example, you can share your entire codebase with a `requirements.txt` that lists the packages (with version numbers!) needed to run it, and others can replicate your work.  Or, you can keep your many personal projects and their different dependencies separate.  Or, while constructing a venv, you make a mistake or some package is not playing well with others, you can *delete it all and start over again* without worrying about affecting your base install.
+The idea of a virtual environment (venv) is to create a containerized space where you can install specific packages needed for a project, that does not affect other venvs.  So, for example, you can share your entire codebase with a `requirements.txt` that lists the packages (with version numbers!) needed to run it, and others can replicate your work.  Or, you can keep your many personal projects and their different dependencies separate.  Or, while constructing a venv, you make a mistake or some package is not playing well with others, you can _delete it all and start over again_ without worrying about affecting your base install.
 
 (**Note:** virtual environments are created by default with zero packages and on top of your core Python/Conda install. So for example if you're running Python 3.11, your venv will be whatever packages you want, but always on Python 3.11.  To change this, and specify the Python version, is sometimes straightforward but is beyond the scope of this tutorial.)
-
 
 ## Virtual environments in Conda
 
@@ -143,7 +142,7 @@ First clone the project into your home directory:
 git clone <url.git>
 ```
 
-Then create a new venv *just for this project*
+Then create a new venv _just for this project_
 
 ```bash
 conda create -n project-env

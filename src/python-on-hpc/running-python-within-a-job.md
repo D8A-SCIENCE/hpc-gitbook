@@ -13,6 +13,7 @@ I'll use a preconfigured environment called `torch-env` that has a CUDA-enabled 
 Create a two-liner Python script to test our PyTorch package is working on GPUs:
 
 `torch-test.py`
+
 ```bash
 import torch
 print(torch.cuda.is_available())
@@ -21,6 +22,7 @@ print(torch.cuda.is_available())
 and your corresponding job script:
 
 `torch-job.sh`
+
 ```bash
 #!/bin/tcsh
 #SBATCH --job-name=ttest 
@@ -53,7 +55,6 @@ sbatch torch-job.sh
 You'll see the submission confirmation with your job ID.  Now we can check on status with `sinfo` or `squeue` or `squeue -u <user>` as before.  Once it's complete, check your `slurm-<job id>.out` file for the "Complete" message, and your `output.out` file for the "True" message.
 
 Now you can run Python scripts in non-interactive jobs on the HPC!
-
 
 ## Torque (archive)
 
