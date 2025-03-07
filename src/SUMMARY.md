@@ -16,7 +16,7 @@
 
 - [What is a Batch System?](the-batch-system/what-is-the-batch-system.md)
 - [Interactive Jobs](the-batch-system/interactive-jobs.md)
-- [Non-Interactive Jobs](the-batch-system/non-interactive-jobs.md)
+- [Non-Interactive Jobs](the-batch-system/non-interactive-jobs-content/non-interactive-jobs.md)
 - [Checking the Status of Jobs](the-batch-system/job-status/checking-the-status-of-your-jobs.md)
 
 # Using Python on The HPC
@@ -47,6 +47,6 @@
 - [Your First K8S Deployment](k8s/your-first-deployment/yourFirstDeployment.md)
 - [Setting up Python and Conda in K8S](k8s/python_conda.md)
 - [Creating custom images](k8s/creating-an-image.md)
-- [Hosting a website on the cluster](k8s/setting-up-website.md)
+- [Hosting a website on the cluster](k8s/setting-up-website/setting-up-website.md)
 - [Running Torch with Real Data in a Pod](k8s/single-pod-torch/singlePodTorch.md)
 - [Running Ollama on K8S](k8s/ollama-example.md)

@@ -2,7 +2,7 @@
 
 Using Python with Anaconda on the cluster in a non-interactive job basically just requires putting all the steps you would normally do interactively, in a batch job script.
 
-To follow the instructions below, we'll assume you're already familiar with working with Conda and environments from [this post](https://d8a-science.github.io/hpc-gitbook/python-on-hpc/conda-environments.html), and with writing basic batch job scripts from [this post](https://d8a-science.github.io/hpc-gitbook/the-batch-system/non-interactive-jobs.html).
+To follow the instructions below, we'll assume you're already familiar with working with Conda and environments from [this post](../conda-environments.md), and with writing basic batch job scripts from [this post](../the-batch-system/non-interactive-jobs-content/non-interactive-jobs.md).
 
 ## Slurm
 

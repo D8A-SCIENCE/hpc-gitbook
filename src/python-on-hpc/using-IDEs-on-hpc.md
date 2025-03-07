@@ -2,7 +2,7 @@
 
 > *"All happy developers are alike; each unhappy developer is unhappy in its own way"* --- Leo Tolstoy (slightly modified)
 
-There are as many preferences for developer environments as there are stars in the sky.  You may prefer to work strictly on the command line with tools like [i3](https://i3wm.org/) and [tmux](https://www.redhat.com/sysadmin/introduction-tmux-linux) and vim (or [Neovim](https://neovim.io/)).  You may prefer to avoid command lines wherever possible and use front-end services like the JupyterHub server in the [previous post](https://d8a-science.github.io/hpc-gitbook/python-on-hpc/jupyter.html).  Or you may prefer using an Integrated Developer Environment (IDE) like [VS Code](https://code.visualstudio.com/), or PyCharm, or RStudio, or others.
+There are as many preferences for developer environments as there are stars in the sky.  You may prefer to work strictly on the command line with tools like [i3](https://i3wm.org/) and [tmux](https://www.redhat.com/sysadmin/introduction-tmux-linux) and vim (or [Neovim](https://neovim.io/)).  You may prefer to avoid command lines wherever possible and use front-end services like the JupyterHub server in the [previous post](jupyter/jupyter.md).  Or you may prefer using an Integrated Developer Environment (IDE) like [VS Code](https://code.visualstudio.com/), or PyCharm, or RStudio, or others.
 
 This post will cover the latter, how to connect your IDE to the HPC clusters and computing nodes.  We will focus on **VS Code**, because it is extremely popular, but similar steps will work for PyCharm and others.
 
@@ -12,7 +12,7 @@ We'll first cover how to connect to a front-end, and then how to connect to a sp
 
 Connecting to a remote server like bora, gulf, etc is very easy provided we have done the following key prequisite:
 
-- **Fully setup your SSH config file.  Follow the directions in [this post](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html) if you haven't already.  VS Code will look in this config file for instructions on how to connect to the server you want (proxy servers, SSH keys, etc).  If you don't have this file setup, it will make the rest trickier.**
+- **Fully setup your SSH config file.  Follow the directions in [this post](../setup/configuring-ssh.md) if you haven't already.  VS Code will look in this config file for instructions on how to connect to the server you want (proxy servers, SSH keys, etc).  If you don't have this file setup, it will make the rest trickier.**
 
 Once that's complete, in VS Code, install the **"Remote SSH" extension**.  You may also consider adding the Remote Explorer and/or Remote SSH: Edit Config extensions.  You can read the documentation [here](https://code.visualstudio.com/docs/remote/ssh).
 
@@ -27,7 +27,7 @@ Once it's connected, you can go to the Explorer tab and click Open Folder, or us
 
 We'd now like to open a Jupyter notebook in VS Code.  This is also easy provided we have done the following key prerequisite:
 
-- **Familiarize with the HPC's Conda module and create at least one virtual environment.  Follow the directions in [this post](https://d8a-science.github.io/hpc-gitbook/python-on-hpc/conda-environments.html) if you haven't already.  VS Code knows to look in several standard places for Python environments, like `~/.conda/envs`, so if you already have an environment or two the rest is easy.**
+- **Familiarize with the HPC's Conda module and create at least one virtual environment.  Follow the directions in [this post](conda-environments.md) if you haven't already.  VS Code knows to look in several standard places for Python environments, like `~/.conda/envs`, so if you already have an environment or two the rest is easy.**
 
 As an additional note, **ensure that any environment you want to run Jupyter notebooks with has the `ipykernel` package installed.**
 
@@ -47,7 +47,7 @@ We can of course edit Python scripts easily in VS Code, and we can run those scr
 
 ## Connecting to a compute node
 
-Editing and running things on the front-end is fine for a lot of debugging, but eventually we want to work with high performance resources like GPUs.  This requires getting allocated resources via Slurm and working on a specific compute node --- refer to [this set of posts](https://d8a-science.github.io/hpc-gitbook/the-batch-system/what-is-the-batch-system.html) if you haven't already.
+Editing and running things on the front-end is fine for a lot of debugging, but eventually we want to work with high performance resources like GPUs.  This requires getting allocated resources via Slurm and working on a specific compute node --- refer to [this set of posts](../the-batch-system/what-is-the-batch-system.md) if you haven't already.
 
 We can connect VS Code to a specific compute node in much the same way we did a front-end, by using the Remote SSH extension and a properly configured SSH config file.
 
@@ -77,7 +77,7 @@ Host gu03
   ProxyJump gulf
 ```
 
-where [we assume you've already](https://d8a-science.github.io/hpc-gitbook/logging-in-and-setting-up-your-hpc-account/configuring-ssh.html) separately setup `gulf` in the SSH Config file.
+where [we assume you've already](../setup/configuring-ssh.md) separately setup `gulf` in the SSH Config file.
 
 Now we're ready to try this from VS Code.  In VS Code, use the Command Palette to do "Remote SSH: Connect to Host", and now select your new entry: gu03.  
 

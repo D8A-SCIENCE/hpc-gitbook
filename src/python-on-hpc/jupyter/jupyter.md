@@ -25,9 +25,9 @@ We'll check the notebook has the resources and packages we want at the end of th
 
 If you are unsatisfied with the control over resources and/or packages the JupyterHub option provides, you can instead directly hook a Jupyter notebook on your local machine's browser to an IPython kernel running on a node in an interactive job.  The steps to do this are:
 
-1. Initiate an interactive job with the resources you want.  See [this post](https://d8a-science.github.io/hpc-gitbook/the-batch-system/interactive-jobs.html) for more detail, or check out the [examples on the HPC website](https://www.wm.edu/offices/it/services/researchcomputing/using/running_jobs_slurm/).
+1. Initiate an interactive job with the resources you want.  See [this post](../../the-batch-system/interactive-jobs.md) for more detail, or check out the examples on the [HPC website](https://www.wm.edu/offices/it/services/researchcomputing/using/running_job).
 
-2. (If needed) Create the Conda environment you want.  See [this post](https://d8a-science.github.io/hpc-gitbook/python-on-hpc/conda-environments.html) for more detail.  Make sure your Conda environment has Jupyter --- while in your activated environment, run `conda install jupyter`.  It doesn't matter if you create this environment from within the job or not.
+2. (If needed) Create the Conda environment you want.  See [this post](../conda-environments.md) for more detail.  Make sure your Conda environment has Jupyter --- while in your activated environment, run `conda install jupyter`.  It doesn't matter if you create this environment from within the job or not.
 
 3. In the interactive job, and within the activated environment, start a headless Jupyter notebook with `jupyter notebook --no-browser --ip=\*`.  This will start an IPython kernel on the node, and expose a port that you can access, but without opening a browser.  It should even give you a URL pre-formatted with this access point and an authentication token.
 
