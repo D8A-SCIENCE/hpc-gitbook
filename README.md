@@ -4,6 +4,6 @@ This is a how-to manual for using the [High Performance Computing (HPC)](https:/
 
 **The site is [deployed live here](https://d8a-science.github.io/hpc-gitbook/).**  
 
-This site is a fork of [@heatherbaier](https://github.com/heatherbaier/)'s Gitbook [here](https://hmbaier.gitbook.io/distributed-ml-w-and-m) and uses Jekyll and the Cayman theme.  
+This site is a fork of [@heatherbaier](https://github.com/heatherbaier/)'s Gitbook [here](https://hmbaier.gitbook.io/distributed-ml-w-and-m), now rendered with [mdBook](https://github.com/rust-lang/mdBook).
 
-Find something incorrect?  See something missing that would be helpful to other Data Science students?  Volunteer to contribute!  Contact one of our current editors to get started: [@heatherbaier](https://github.com/heatherbaier/), [@DanRunfola](https://github.com/DanRunfola), [@stmorse](https://github.com/stmorse). 
+Find something incorrect?  See something missing that would be helpful to other Data Science students?  Volunteer to contribute!  Contact one of our current editors to get started: [@heatherbaier](https://github.com/heatherbaier/), [@DanRunfola](https://github.com/DanRunfola), [@stmorse](https://github.com/stmorse). Alternatively, check out [CONTRIBUTING.md](CONTRIBUTING.md) to get started and submit a PR.

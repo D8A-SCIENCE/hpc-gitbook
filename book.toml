@@ -1,5 +1,5 @@
 [book]
-authors = ["heather Baier", "Steve Morse", "James Elmore"]
+authors = ["heather Baier", "Dan Runfola", "Steve Morse", "James Elmore"]
 language = "en"
 text-direction = "ltr"
 multilingual = false
@@ -10,3 +10,10 @@ description = "A guide to using the HPC at W&M for distributed machine learning.
 [build]
 build-dir = "book"
 create-missing = false
+
+[output.html]
+
+[output.linkcheck]
+optional = true
+follow-web-links = false # Enabling causes significent performance issues
+traverse-parent-directories = false # Everything shown in the book should be in /src
