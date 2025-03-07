@@ -48,7 +48,7 @@ Here we have an example python script that shows some of the basics of how MPI w
 2. In this example, we're only tasking two of our total 24 processors - i.e., every processors will run the "print" statement at the top, then processor 0 will declare it is rank 0 and create a parameter list. It will then send it to rank 1 (dest=1), with a tag of 11 (you can tag whatever you want).
 3. Then, on rank 1 processor, it will load a pandas dataset, and then _receive_ the list of parameters from rank 0 (specifically asking for tag 11).
 
-You can arbitrarily extend this communication logic to implement a wide range of distribution strategies - for example, a [Random Search](distributed-scikit/mpi.md).
+You can arbitrarily extend this communication logic to implement a wide range of distribution strategies - for example, a [Random Search](../distributed-scikit/mpi.md).
 
 ```python
 from mpi4py import MPI

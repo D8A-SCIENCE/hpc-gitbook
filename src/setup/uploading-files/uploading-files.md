@@ -18,7 +18,7 @@ The most straightforward and out-of-the-box way is using the command line tool [
 scp myFile.txt <user>@bora.sciclone.wm.edu:test/
 ```
 
-If your [config file is setup](configuring-ssh.md), this can simplify to just `scp myFile.txt bora:test/`.  (And don't forget the trailing `/` or else it will think its the filename and you want to rename `myFile.txt` to `test`.)
+If your [config file is setup](../configuring-ssh.md), this can simplify to just `scp myFile.txt bora:test/`.  (And don't forget the trailing `/` or else it will think its the filename and you want to rename `myFile.txt` to `test`.)
 
 (**Note:** even if you don't want the file to go in a subfolder on your remote home, you still need the colon and some placeholder like `~/`.)
 
@@ -43,8 +43,6 @@ From a very high level, we seek to connect our local files (shown on the left) t
 Once clicked, you'll be shown an interface that looks something like this (though you likely will not have any sites pre-configured). First you want to click New Site, and then name your site something you'll remember (mine is called 'sciclone' in the image). You then need to select protocol `SFTP - SSH File Transfer Protocol`, and type in the host for sciclone (i.e., `vortex.sciclone.wm.edu`). Under logon type select Normal, and then type in your William & Mary username and password. Finally, click connect (next time, you'll be able to simply click connect, as the remote server location itself will be saved). Note you may be prompted that the server's host key is unknown - this is a security check; generally, you'll want to check "Always trust this host, add this key to the cache" and then click OK.
 
 Note that `vortex.sciclone.wm.edu` may be inappropriate for many users; `bora.sciclone.wm.edu` should offer faster and more consistent performance in most cases, and is the recommended default as of September 2022.  More details about different fileservers you can connect to can be found [here](https://www.wm.edu/offices/it/services/researchcomputing/using/files/xfers/index.php) -- if you are working in a specific lab on campus, it is best to call directly into the fileserver that they use to minimize network bandwidth and increase file transfer speeds.
-
-<!-- ![step3](https://user-images.githubusercontent.com/7882645/190205296-529fe01c-84dc-4349-a825-9b31f51d4b9b.png) -->
 
 ![filezilla setup 3](filezilla-setup-3.png)
 

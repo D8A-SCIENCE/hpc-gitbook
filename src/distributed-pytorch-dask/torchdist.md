@@ -1,8 +1,8 @@
 # PyTorch + DASK
 
-## pyTorch Distributed
+## PyTorch Distributed
 
-This guide walks through how you can quickly distribute deep learning models using pyTorch in a distributed environment. It assumes you have already completed the [basic Python & MPI tutorial](../distributed-ml-with-pytorch/parallel-computing/launching-parallel-programs-on-the-hpc-using-mpi.md), [Python & Dask tutorial](../distributed-ml-with-pytorch/parallel-computing/dask\_intro.md), and understand the [basics of torch](../distributed-ml-with-pytorch/distributed-ml-with-pytorch/torchBasics.md).
+This guide walks through how you can quickly distribute deep learning models using pyTorch in a distributed environment. It assumes you have already completed the [basic Python & MPI tutorial](../python-on-hpc/launching-parallel-programs-on-the-hpc-using-mpi.md), [Python & Dask tutorial](../python-on-hpc/dask_intro.md), and understand the [basics of torch](torchBasics.md).
 
 ## High level "what's going on here"
 
@@ -18,7 +18,7 @@ This strategy for parallelization is a bit different from what we present in our
 
 `conda install dask-jobqueue -c conda-forge`
 
-You should have the UC Merced satellite imagery downloaded, as specified in the [basics of torch](../distributed-ml-with-pytorch/distributed-ml-with-pytorch/torchBasics.md) tutorial.
+You should have the UC Merced satellite imagery downloaded, as specified in the [basics of torch](torchBasics.md) tutorial.
 
 ## Job File
 

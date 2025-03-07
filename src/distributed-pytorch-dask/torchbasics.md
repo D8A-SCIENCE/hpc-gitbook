@@ -2,7 +2,7 @@
 
 ## What is Torch, and why this guide?
 
-This guide provides a basic, single-node single-core implementation of a Torch script. It serves as the basis for our guide on [how to parallelize deep learning models](../distributed-ml-with-pytorch/distributed-ml-with-pytorch/torchDist.md). Torch is a very popular library for handling matrix operations on GPU (similar to numpy, but with a focus on GPU support). The most common way to use Torch - at least in this authors world - is through a wrapper called PyTorch. This brief guide will show an example of implementing code in PyTorch on our cluster, but we won't be distributing it just yet.
+This guide provides a basic, single-node single-core implementation of a Torch script. It serves as the basis for our guide on [how to parallelize deep learning models](torchDist.md). Torch is a very popular library for handling matrix operations on GPU (similar to numpy, but with a focus on GPU support). The most common way to use Torch - at least in this authors world - is through a wrapper called PyTorch. This brief guide will show an example of implementing code in PyTorch on our cluster, but we won't be distributing it just yet.
 
 ## Example Data
 
