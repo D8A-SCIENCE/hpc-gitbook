@@ -25,7 +25,7 @@ If your [config file is setup](https://d8a-science.github.io/hpc-gitbook/logging
 
 But there are a wide range of tools you can use to get files onto the HPC.  Another is the SSH Secure File Transfer Protocol, or [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server), which creates a new command line session just for file transfer, which is convenient if you're doing several.  Another is [rsync](https://www.samba.org/rsync/).  
 
-The HPC has a whole page on file transfer also, [check it out](https://www.wm.edu/offices/it/services/researchcomputing/using/xfers/).
+The HPC has a whole page on file transfer also, [check it out](https://www.wm.edu/offices/it/services/researchcomputing/using/filesandfilesystems/xfers/).
 
 
 ## Another option: Firezilla
@@ -48,7 +48,7 @@ From a very high level, we seek to connect our local files (shown on the left) t
 
 Once clicked, you'll be shown an interface that looks something like this (though you likely will not have any sites pre-configured). First you want to click New Site, and then name your site something you'll remember (mine is called 'sciclone' in the image). You then need to select protocol `SFTP - SSH File Transfer Protocol`, and type in the host for sciclone (i.e., `vortex.sciclone.wm.edu`). Under logon type select Normal, and then type in your William & Mary username and password. Finally, click connect (next time, you'll be able to simply click connect, as the remote server location itself will be saved). Note you may be prompted that the server's host key is unknown - this is a security check; generally, you'll want to check "Always trust this host, add this key to the cache" and then click OK.
 
-Note that "vortex.sciclone.wm.edu" may be inappropriate for many users; "bora.sciclone.wm.edu" should offer faster and more consistent performance in most cases, and is the recommended default as of September 2022.  More details about different fileservers you can connect to can be found [here](https://www.wm.edu/offices/it/services/researchcomputing/using/files/xfers/index.php) - if you are working in a specific lab on campus, it is best to call directly into the fileserver that they use to minimize network bandwidth and increase file transfer speeds.
+Note that "vortex.sciclone.wm.edu" may be inappropriate for many users; "bora.sciclone.wm.edu" should offer faster and more consistent performance in most cases, and is the recommended default as of September 2022.  More details about different fileservers you can connect to can be found [here](https://www.wm.edu/offices/it/services/researchcomputing/using/filesandfilesystems/xfers/) - if you are working in a specific lab on campus, it is best to call directly into the fileserver that they use to minimize network bandwidth and increase file transfer speeds.
 
 <!-- ![step3](https://user-images.githubusercontent.com/7882645/190205296-529fe01c-84dc-4349-a825-9b31f51d4b9b.png) -->
 

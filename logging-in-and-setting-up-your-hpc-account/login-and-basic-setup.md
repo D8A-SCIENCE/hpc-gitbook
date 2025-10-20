@@ -28,7 +28,7 @@ Type `pwd` (print working directory) into your terminal. It should print out: `/
 
 This is your landing, or "home" directory - you'll open to this every time you login.
 
-Now type `ls` into your terminal. If this is the first time you are logging in, you should see 4 folders print out. You can find read more about the purpose of each of these folders [here](https://www.wm.edu/offices/it/services/researchcomputing/using/files/index.php).
+Now type `ls` into your terminal. If this is the first time you are logging in, you should see 4 folders print out. You can find read more about the purpose of each of these folders [here](https://www.wm.edu/offices/it/services/researchcomputing/using/filesandfilesystems/).
 
 **Note on symlinks.** Your home directory is the same across all subclusters in SciClone -- it is the same filesystem, connected across via [symlinks](https://en.wikipedia.org/wiki/Symbolic_link).  Try saving a test file in your home directory while logged into `vortex` --- now exit vortex and log into `bora`: you will see the same file structure, and same file.  (This is an important note when we begin talking about virtual environments, or persistence in containerized workflows.)
 
